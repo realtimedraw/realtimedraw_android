@@ -9,6 +9,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
 
 
 /**
@@ -45,6 +61,39 @@ public class FullscreenActivity extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
+
+    private static final String TAG = "de.tavendo.test1";
+
+    private final WebSocketConnection mConnection = new WebSocketConnection();
+
+    private void start() {
+
+        final String wsuri = "ws://192.168.1.132:9000";
+
+        try {
+            mConnection.connect(wsuri, new WebSocketHandler() {
+
+                @Override
+                public void onOpen() {
+                    Log.d(TAG, "Status: Connected to " + wsuri);
+                    mConnection.sendTextMessage("Hello, world!");
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    Log.d(TAG, "Got echo: " + payload);
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d(TAG, "Connection lost.");
+                }
+            });
+        } catch (WebSocketException e) {
+
+            Log.d(TAG, e.toString());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +162,8 @@ public class FullscreenActivity extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        start();
     }
 
     @Override
