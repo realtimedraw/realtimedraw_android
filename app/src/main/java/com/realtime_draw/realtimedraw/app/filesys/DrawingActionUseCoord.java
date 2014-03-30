@@ -32,4 +32,8 @@ public class DrawingActionUseCoord implements DrawingActionInterface {
 		byteBuffer.putShort(y_);
 		baos.write(byteBuffer.array());
 	}
+
+    public int getEncodedSize(){
+        return 4;
+    }
 }

@@ -20,4 +20,8 @@ public class DrawingActionPickTool implements DrawingActionInterface {
     public int getTool(){
         return tool_;
     }
+
+    public int getEncodedSize(){
+        return 4;
+    }
 }

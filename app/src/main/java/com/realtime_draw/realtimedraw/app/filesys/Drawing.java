@@ -9,13 +9,21 @@ import java.util.Date;
 public class Drawing {
 	private Date created;
 	private ArrayList<DrawingFrame> frames = new ArrayList<DrawingFrame>();
+	private int encodedSize;
+	private int lastTimeIndex;
 
 	public Date getCreated() {
 		return created;
 	}
 
+	public int getLastTimeIndex() {
+		return lastTimeIndex;
+	}
+
 	public Drawing() {
+		encodedSize = 16;
 		created = new Date();
+		lastTimeIndex = 0;
 	}
 
 	public static Drawing fromByteBuffer(ByteBuffer byteBuffer) throws Exception {
@@ -23,6 +31,7 @@ public class Drawing {
 		byteBuffer.order(ByteOrder.BIG_ENDIAN);
 		drawing.created = new Date(byteBuffer.getLong() * 1000);// timestamp
 																// 8bytes long
+		drawing.lastTimeIndex = byteBuffer.getInt();// lastTimeIndex 4bytes int
 		int framesNumber = byteBuffer.getInt();// framesNumber 4bytes int
 		if (framesNumber < 0) {
 			throw new Exception("Number of frames is negative");
@@ -44,6 +53,11 @@ public class Drawing {
 
 		byteBuffer = ByteBuffer.allocate(4);
 		byteBuffer.order(ByteOrder.BIG_ENDIAN);
+		byteBuffer.putInt(frames.get(frames.size() - 1).getTimeIndex());
+		baos.write(byteBuffer.array());
+
+		byteBuffer = ByteBuffer.allocate(4);
+		byteBuffer.order(ByteOrder.BIG_ENDIAN);
 		byteBuffer.putInt(frames.size());
 		baos.write(byteBuffer.array());
 
@@ -54,11 +68,19 @@ public class Drawing {
 	}
 
 	public void appendFrame(DrawingFrame frame) {
+		encodedSize += frame.getEncodedSize();
 		frames.add(frame);
+		lastTimeIndex = frame.getTimeIndex();
 	}
 
 	public void insertFrame(DrawingFrame frame) {
+		encodedSize += frame.getEncodedSize();
 		addFrameBS(frame, 0, frames.size());
+		lastTimeIndex = frames.get(frames.size() - 1).getTimeIndex();
+	}
+
+	public int getEncodedSize() {
+		return encodedSize;
 	}
 
 	private void addFrameBS(DrawingFrame frame, int left, int right) {

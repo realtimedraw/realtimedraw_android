@@ -22,4 +22,8 @@ public class DrawingActionPickColor implements DrawingActionInterface {
 		byteBuffer.putInt(color_);
 		baos.write(byteBuffer.array());
 	}
+    
+    public int getEncodedSize(){
+        return 4;
+    }
 }

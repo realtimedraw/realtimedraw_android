@@ -7,10 +7,12 @@ import java.nio.ByteOrder;
 public class DrawingFrame {
 	private int timeIndex_;
 	private DrawingActionInterface drawingAction_;
+    private int encodedSize;
 
 	public DrawingFrame(int timeIndex, DrawingActionInterface drawingAction) {
 		timeIndex_ = timeIndex;
 		drawingAction_ = drawingAction;
+        encodedSize = 5 + drawingAction.getEncodedSize();
 	}
 
 	public static DrawingFrame fromByteBuffer(ByteBuffer byteBuffer) {
@@ -37,4 +39,8 @@ public class DrawingFrame {
 	public DrawingActionInterface getDrawingAction() {
 		return drawingAction_;
 	}
+
+    public int getEncodedSize(){
+        return encodedSize;
+    }
 }
