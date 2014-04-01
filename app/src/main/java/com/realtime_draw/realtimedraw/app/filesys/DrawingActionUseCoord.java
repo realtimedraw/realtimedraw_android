@@ -1,6 +1,9 @@
 package com.realtime_draw.realtimedraw.app.filesys;
 
-import java.io.ByteArrayOutputStream;
+import android.graphics.Canvas;
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -21,19 +24,23 @@ public class DrawingActionUseCoord implements DrawingActionInterface {
 		return y_;
 	}
 	
-	public void toBytes(ByteArrayOutputStream baos) throws Exception{
-		baos.write((byte) DrawingAction.USE_COORD.ordinal());
-		ByteBuffer byteBuffer = ByteBuffer.allocate(2);
-		byteBuffer.order(ByteOrder.BIG_ENDIAN);
-		byteBuffer.putShort(x_);
-		baos.write(byteBuffer.array());
-		byteBuffer = ByteBuffer.allocate(2);
-		byteBuffer.order(ByteOrder.BIG_ENDIAN);
-		byteBuffer.putShort(y_);
-		baos.write(byteBuffer.array());
+	public void encode(OutputStream stream) throws IOException{
+		stream.write((byte) DrawingActionEnum.USE_COORD.ordinal());
+        stream.write((byte)(x_>> 8));
+        stream.write((byte)(x_    ));
+        stream.write((byte)(y_>> 8));
+        stream.write((byte)(y_    ));
 	}
 
     public int getEncodedSize(){
-        return 4;
+        return 5;
+    }
+
+    public DrawingActionEnum getType(){
+        return DrawingActionEnum.USE_COORD;
+    }
+
+    public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
+        state.tool.useCoords(canvas, state, x_, y_);
     }
 }

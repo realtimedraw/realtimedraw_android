@@ -1,6 +1,9 @@
 package com.realtime_draw.realtimedraw.app.filesys;
 
-import java.io.ByteArrayOutputStream;
+import android.graphics.Canvas;
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -15,15 +18,23 @@ public class DrawingActionPickColor implements DrawingActionInterface {
 		return color_;
 	}
 
-	public void toBytes(ByteArrayOutputStream baos) throws Exception {
-		baos.write((byte) DrawingAction.PICK_COLOR.ordinal());
-		ByteBuffer byteBuffer = ByteBuffer.allocate(4);
-		byteBuffer.order(ByteOrder.BIG_ENDIAN);
-		byteBuffer.putInt(color_);
-		baos.write(byteBuffer.array());
+	public void encode(OutputStream stream) throws IOException {
+		stream.write((byte) DrawingActionEnum.PICK_COLOR.ordinal());
+        stream.write((byte)(color_>>24));
+        stream.write((byte)(color_>>16));
+        stream.write((byte)(color_>> 8));
+        stream.write((byte)(color_    ));
 	}
     
     public int getEncodedSize(){
-        return 4;
+        return 5;
+    }
+
+    public DrawingActionEnum getType(){
+        return DrawingActionEnum.PICK_COLOR;
+    }
+
+    public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
+        state.color = color_;
     }
 }

@@ -1,35 +1,34 @@
 package com.realtime_draw.realtimedraw.app.filesys;
 
-import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class DrawingFrame {
-	private int timeIndex_;
+	private short timeIndex_;
 	private DrawingActionInterface drawingAction_;
     private int encodedSize;
 
-	public DrawingFrame(int timeIndex, DrawingActionInterface drawingAction) {
+	public DrawingFrame(short timeIndex, DrawingActionInterface drawingAction) {
 		timeIndex_ = timeIndex;
 		drawingAction_ = drawingAction;
-        encodedSize = 5 + drawingAction.getEncodedSize();
+        encodedSize = 2 + drawingAction.getEncodedSize();
 	}
 
-	public static DrawingFrame fromByteBuffer(ByteBuffer byteBuffer) {
-		int timeIndex = byteBuffer.getInt();// timeIndex 4bytes int
-		DrawingAction action = DrawingAction.fromByte(byteBuffer.get());// action
+	public static DrawingFrame decode(ByteBuffer byteBuffer) {
+		short timeIndex = byteBuffer.getShort();// timeIndex 2bytes short
+		DrawingActionEnum action = DrawingActionEnum.decodeType(byteBuffer.get());// action
 																		// 1byte
 																		// byte
-        DrawingActionInterface drawingAction = action.fromByteBuffer(byteBuffer);
+        DrawingActionInterface drawingAction = action.decode(byteBuffer);
 		return new DrawingFrame(timeIndex, drawingAction);
 	}
 
-	public void toBytes(ByteArrayOutputStream baos) throws Exception {
-		ByteBuffer byteBuffer = ByteBuffer.allocate(4);
-		byteBuffer.order(ByteOrder.BIG_ENDIAN);
-		byteBuffer.putInt(timeIndex_);
-		baos.write(byteBuffer.array());
-		drawingAction_.toBytes(baos);
+	public void encode(OutputStream stream) throws IOException {
+        stream.write((byte)(timeIndex_>> 8));
+        stream.write((byte)(timeIndex_    ));
+		drawingAction_.encode(stream);
 	}
 
 	public int getTimeIndex() {

@@ -1,27 +1,33 @@
 package com.realtime_draw.realtimedraw.app.filesys;
 
-import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import android.graphics.Canvas;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class DrawingActionPickTool implements DrawingActionInterface {
-    private int tool_;
+    private DrawingToolInterface tool_;
 
-    public DrawingActionPickTool(int tool){ tool_ = tool; }
+    public DrawingActionPickTool(DrawingToolInterface tool){ tool_ = tool; }
 
-    public void toBytes(ByteArrayOutputStream baos) throws Exception {
-        baos.write((byte) DrawingAction.PICK_TOOL.ordinal());
-        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
-        byteBuffer.order(ByteOrder.BIG_ENDIAN);
-        byteBuffer.putInt(tool_);
-        baos.write(byteBuffer.array());
+    public void encode(OutputStream stream) throws IOException {
+        stream.write((byte) DrawingActionEnum.PICK_TOOL.ordinal());
+        tool_.encode(stream);
     }
 
-    public int getTool(){
+    public DrawingToolInterface getTool(){
         return tool_;
     }
 
     public int getEncodedSize(){
-        return 4;
+        return 1+tool_.getEncodedSize();
+    }
+
+    public DrawingActionEnum getType(){
+        return DrawingActionEnum.PICK_TOOL;
+    }
+
+    public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
+        state.tool = tool_;
     }
 }
