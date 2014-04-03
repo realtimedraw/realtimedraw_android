@@ -22,11 +22,14 @@ public class DrawingFrameGroup {
     }
 
     public DrawingFrameGroup(Bitmap start){
+long g = System.nanoTime();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         start.compress(Bitmap.CompressFormat.PNG, 100, baos);
         keyFrame = baos.toByteArray();
         encodedSize = keyFrame.length + 6;
         referencingGroup = -1;
+long end = System.nanoTime();
+System.out.println("Compressed to png: " + ((end - g) / 1000000) + " milliseconds");
     }
 
     public static DrawingFrameGroup emptyGroup(short referenceGroup){
@@ -83,8 +86,8 @@ public class DrawingFrameGroup {
         stream.write(keyFrame);
         framesNumber = (short)frames.size();
         while (framesNumber>0){
-            frames.get(framesNumber).encode(stream);
             --framesNumber;
+            frames.get(framesNumber).encode(stream);
         }
     }
 

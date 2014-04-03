@@ -72,19 +72,21 @@ public class FullscreenActivity extends Activity {
             System.out.println("Recording...");
             DrawingRecorder recorder = new DrawingRecorder();
             recorder.startRecording(bitmap);
-            DrawingActionInterface action= new DrawingActionUseCoord((short)2, (short)2);
             long start = System.nanoTime();
-            for(short i=0; i<3; ++i){
-                recorder.appendNowAction(action);
+            long end;
+            for(short j=0; j<300; ++j) {
+                System.out.println("j="+j);
+                System.out.println("stream size: "+recorder.getStreamSize());
+                for (short i = 0; i < 30000; ++i) {
+                    DrawingActionInterface action = new DrawingActionUseCoord((short) (i / 200), (short) (i % 200));
+                    recorder.appendNowAction(action);
+                }
+                end = System.nanoTime();
+                System.out.println("Added 30 000 DrawingActionInterface witihin " + ((end - start) / 1000000) + " milliseconds");
+                Thread.sleep(1000);
+                System.out.println("sleep 1 second");
+                start = System.nanoTime();
             }
-            long end = System.nanoTime();
-            System.out.println("Added 30 000 DrawingActionInterface witihin " + ((end - start) / 1000000) + " milliseconds");
-            Thread.sleep(3000);
-            for(short i=0; i<3; ++i){
-                action = new DrawingActionUseCoord(i, i);
-                recorder.appendNowAction(action);
-            }
-            System.out.println("Added 30 000 new DrawingActionInterface witihin " + ((end - start) / 1000000) + " milliseconds");
             recorder.stopRecording();
             start = System.nanoTime();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

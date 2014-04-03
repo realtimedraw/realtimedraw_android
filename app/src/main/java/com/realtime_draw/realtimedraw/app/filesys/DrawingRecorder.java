@@ -40,7 +40,6 @@ public class DrawingRecorder {
         if(!isRecording)
             throw new Exception("Not recording");
         int timeIndex = (int) (System.currentTimeMillis() - startMillis);
-System.out.println("append " + timeIndex);
         drawingStream.write((byte)(timeIndex>>24));
         drawingStream.write((byte)(timeIndex>>16));
         drawingStream.write((byte)(timeIndex>> 8));
@@ -61,8 +60,6 @@ System.out.println("append " + timeIndex);
         short groupIndex, groupsNumber = 1, lastKeyGroupIndex = 1;
         while (i>0){
             timeIndex = ((((int)byteBuffer.get() & 0xFF)<<8 | (int)byteBuffer.get() & 0xFF)<<8 | (int)byteBuffer.get() & 0xFF)<<8 | (int)byteBuffer.get() & 0xFF;
-
-System.out.println("load " + timeIndex);
             groupIndex = (short)(timeIndex/1000 + 1);
             timeIndex = timeIndex%1000;
             if(groupIndex>groupsNumber) {
@@ -76,11 +73,15 @@ System.out.println("load " + timeIndex);
             }
             DrawingActionEnum act = DrawingActionEnum.decodeType(byteBuffer.get());
             DrawingActionInterface action = act.decode(byteBuffer);
-            //player.playAction(action);
+            player.playAction(action);
             group.appendFrame(new DrawingFrame((short)timeIndex, action));
             lastKeyGroupIndex=groupsNumber;
             --i;
         }
         group.encode(stream);
+    }
+
+    public int getStreamSize(){
+        return drawingStream.size();
     }
 }
