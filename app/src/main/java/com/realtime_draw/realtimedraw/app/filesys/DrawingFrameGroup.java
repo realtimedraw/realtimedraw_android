@@ -15,9 +15,10 @@ public class DrawingFrameGroup {
     private ArrayList<DrawingFrame> frames = new ArrayList<DrawingFrame>();
     private byte[] keyFrame;
     private short referencingGroup;
+    private int timeIndex = -1;
 
     private DrawingFrameGroup(){
-        encodedSize = 6;
+        encodedSize = 14;
         referencingGroup = -1;
     }
 
@@ -26,7 +27,7 @@ long g = System.nanoTime();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         start.compress(Bitmap.CompressFormat.PNG, 100, baos);
         keyFrame = baos.toByteArray();
-        encodedSize = keyFrame.length + 6;
+        encodedSize = keyFrame.length + 14;
         referencingGroup = -1;
 long end = System.nanoTime();
 System.out.println("Compressed to png: " + ((end - g) / 1000000) + " milliseconds");
@@ -48,7 +49,9 @@ System.out.println("Compressed to png: " + ((end - g) / 1000000) + " millisecond
             group = emptyGroup(framesNumber);
         }else {
             group = new DrawingFrameGroup();
-            int size = byteBuffer.getInt(); // size 4bytes int
+            byteBuffer.getInt();// encodedSize 4bytes int
+            group.timeIndex = byteBuffer.getInt();// timeIndex 4bytes int
+            int size = byteBuffer.getInt(); // keyFrameSize 4bytes int
             group.encodedSize += size;
             group.keyFrame = new byte[size];
             byteBuffer.get(group.keyFrame, 0, size);
@@ -69,15 +72,25 @@ System.out.println("Compressed to png: " + ((end - g) / 1000000) + " millisecond
         stream.write((byte)(referenceGroup    ));
     }
 
-    public void encode(OutputStream stream) throws IOException {
+    public void encode(OutputStream stream) throws Exception {
         if(referencingGroup>0) {
-            stream.write((byte)(referencingGroup>> 8));
-            stream.write((byte)(referencingGroup    ));
+            encodeEmptyGroupFromReference(stream, referencingGroup);
             return;
+        }
+        if(timeIndex <0){
+            throw new RuntimeException("DrawingFrameGroup has invalid timeIndex");
         }
         short framesNumber = (short)-frames.size();
         stream.write((byte)(framesNumber>> 8));
         stream.write((byte)(framesNumber    ));
+        stream.write((byte)(encodedSize>>24));
+        stream.write((byte)(encodedSize>>16));
+        stream.write((byte)(encodedSize>> 8));
+        stream.write((byte)(encodedSize    ));
+        stream.write((byte)(timeIndex >>24));
+        stream.write((byte)(timeIndex >>16));
+        stream.write((byte)(timeIndex >> 8));
+        stream.write((byte)(timeIndex));
         int keyFrameLength = keyFrame.length;
         stream.write((byte)(keyFrameLength>>24));
         stream.write((byte)(keyFrameLength>>16));
@@ -140,5 +153,13 @@ System.out.println("Compressed to png: " + ((end - g) / 1000000) + " millisecond
             throw new Exception("Not an empty group");
         }
         return referencingGroup;
+    }
+
+    public int getTimeIndex() {
+        return timeIndex;
+    }
+
+    public void setTimeIndex(int timeIndex) {
+        this.timeIndex = timeIndex;
     }
 }

@@ -2,13 +2,12 @@ package com.realtime_draw.realtimedraw.app;
 
 import com.realtime_draw.realtimedraw.app.filesys.DrawingActionInterface;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingActionUseCoord;
-import com.realtime_draw.realtimedraw.app.filesys.DrawingRecorder;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
 import com.realtime_draw.realtimedraw.app.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,9 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.util.Log;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
@@ -69,65 +66,27 @@ public class FullscreenActivity extends Activity {
             Thread.sleep(1000);
             System.out.println("Testing...");
             Bitmap bitmap = Bitmap.createBitmap(1920, 1080, Bitmap.Config.ARGB_8888);
-            System.out.println("Recording...");
-            DrawingRecorder recorder = new DrawingRecorder();
-            recorder.startRecording(bitmap);
+            ByteArrayOutputStream enc_out = new ByteArrayOutputStream();
+            DrawingEncoder encoder = new DrawingEncoder(enc_out, bitmap);
+            System.out.println("Starting encoder...");
+            encoder.start();
             long start = System.nanoTime();
-            long end;
-            for(short j=0; j<300; ++j) {
-                System.out.println("j="+j);
-                System.out.println("stream size: "+recorder.getStreamSize());
-                for (short i = 0; i < 30000; ++i) {
-                    DrawingActionInterface action = new DrawingActionUseCoord((short) (i / 200), (short) (i % 200));
-                    recorder.appendNowAction(action);
+
+            for(short j=0; j<600; ++j) {
+                for (short i = 0; i < 100; ++i) {
+                    DrawingActionInterface action = new DrawingActionUseCoord(i, j);
+                    encoder.queueAction(j*1000+i, action);
                 }
-                end = System.nanoTime();
-                System.out.println("Added 30 000 DrawingActionInterface witihin " + ((end - start) / 1000000) + " milliseconds");
-                Thread.sleep(1000);
-                System.out.println("sleep 1 second");
-                start = System.nanoTime();
             }
-            recorder.stopRecording();
-            start = System.nanoTime();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            recorder.save(baos);
-            end = System.nanoTime();
-            System.out.println("Saved recording witihin " + ((end - start) / 1000000) + " milliseconds");
-            System.out.println("Recording size is " + baos.size());
+            encoder.queueEOS();
+
+            encoder.join();
+            long end = System.nanoTime();
+            System.out.println("Finished encoding witihin " + ((end - start) / 1000000) + " milliseconds");
+            System.out.println("Output size is " + enc_out.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        for(short i=0;i<30000;++i){
-//            DrawingFrameGroup group = new DrawingFrameGroup();
-//        }
-//        drawing.appendFrame(new DrawingFrame(0, new DrawingActionPickColor(0xFF000000)));
-//        long start = System.nanoTime();
-//        for (int i = 0; i < 1000000; ++i) {
-//            drawing.appendFrame(new DrawingFrame(i + 1, new DrawingActionUseCoord((short) i, (short) i)));
-//        }
-//        long end = System.nanoTime();
-//        System.out.println("Added 1 000 000 DrawingFrame witihin " + ((end - start) / 1000000) + " milliseconds");
-//        System.out.println("Estimated file size: " + drawing.getEncodedSize());
-//        System.out.println("Last time index: " + drawing.getLastTimeIndex());
-//
-//        System.out.println("Writing drawing to file");
-//        File file = new File("test");
-//        DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
-//        dos.write(drawing.headerToByteArray());
-//        dos.flush();
-//        dos.close();
-//
-//        byte[] fileData = new byte[(int) file.length()];
-//        DataInputStream dis = new DataInputStream(new FileInputStream(file));
-//        dis.readFully(fileData);
-//        dis.close();
-//        start = System.nanoTime();
-//        drawing = Drawing.headerFromByteArray(fileData);
-//
-//        end = System.nanoTime();
-//        System.out.println("Loaded 1 000 001 DrawingFrame witihin " + ((end - start) / 1000000) + " milliseconds");
-//        System.out.println("Last time index: " + drawing.getLastTimeIndex());
     }
 
     private void testws(){
