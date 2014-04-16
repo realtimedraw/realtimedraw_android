@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.drawingfun.app.MainActivity" >
+    tools:context="com.realtime_draw.realtimedraw.app.FullscreenActivity" >
     
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

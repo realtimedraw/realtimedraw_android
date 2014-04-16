@@ -1,22 +1,21 @@
-package com.example.drawingfun.app;
+package com.realtime_draw.realtimedraw.app;
 
-import android.view.View;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.view.MotionEvent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
+import android.view.View;
 
+import com.realtime_draw.realtimedraw.app.R;
 
-
-
-public class DrawingView extends View 
+public class DrawingView extends View
 {
 	
 	//drawing path

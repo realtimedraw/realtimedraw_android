@@ -11,7 +11,7 @@ public class DrawingEncoder extends Thread {
     private DataOutputStream out;
     private DrawingFrameGroup frameGroup;
     private DrawingPlayer player;
-    private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<>();
+    private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<QueueItem>();
 
     public DrawingEncoder(OutputStream outputStream, Bitmap initialFrame){
         out = new DataOutputStream(outputStream);

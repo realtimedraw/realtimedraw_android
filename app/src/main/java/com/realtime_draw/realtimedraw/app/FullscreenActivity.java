@@ -1,5 +1,6 @@
 package com.realtime_draw.realtimedraw.app;
 
+import com.realtime_draw.realtimedraw.app.R;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingActionInterface;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingActionUseCoord;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
@@ -7,58 +8,39 @@ import com.realtime_draw.realtimedraw.app.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
 
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
- */
-public class FullscreenActivity extends Activity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
-
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-    /**
-     * If set, will toggle the system UI visibility upon interaction. Otherwise,
-     * will show the system UI visibility upon interaction.
-     */
-    private static final boolean TOGGLE_ON_CLICK = true;
-
-    /**
-     * The flags to pass to {@link SystemUiHider#getInstance}.
-     */
-    private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
-
-    /**
-     * The instance of the {@link SystemUiHider} for this activity.
-     */
-    private SystemUiHider mSystemUiHider;
-
-    private static final String TAG = "de.tavendo.test1";
-
+public class FullscreenActivity extends Activity implements View.OnClickListener {
+    private static final String TAG = "com.realtime_draw.realtimedraw";
+    private DrawingView drawView;
+    private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn;
+    private float smallBrush, mediumBrush, largeBrush;
+    private ImageButton opacityBtn;
     private final WebSocketConnection mConnection = new WebSocketConnection();
 
     private void testDrawing() {
@@ -118,121 +100,224 @@ public class FullscreenActivity extends Activity {
     }
 
     private void start() {
-        testDrawing();
+//        testDrawing();
 //        testws();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_fullscreen);
+        //get drawing view
+        drawView = (DrawingView)findViewById(R.id.drawing);
 
-        final View controlsView = findViewById(R.id.fullscreen_content_controls);
-        final View contentView = findViewById(R.id.fullscreen_content);
+        LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
+        currPaint = (ImageButton)paintLayout.getChildAt(0);
+        currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+        smallBrush = getResources().getInteger(R.integer.small_size);
+        mediumBrush = getResources().getInteger(R.integer.medium_size);
+        largeBrush = getResources().getInteger(R.integer.large_size);
+        drawBtn = (ImageButton)findViewById(R.id.draw_btn);
+        drawBtn.setOnClickListener(this);
+        drawView.setBrushSize(mediumBrush);
+        eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
+        eraseBtn.setOnClickListener(this);
+        newBtn = (ImageButton)findViewById(R.id.new_btn);
+        newBtn.setOnClickListener(this);
+        saveBtn = (ImageButton)findViewById(R.id.save_btn);
+        saveBtn.setOnClickListener(this);
 
-        // Set up an instance of SystemUiHider to control the system UI for
-        // this activity.
-        mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
-        mSystemUiHider.setup();
-        mSystemUiHider
-                .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-                    // Cached values.
-                    int mControlsHeight;
-                    int mShortAnimTime;
-
-                    @Override
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-                    public void onVisibilityChange(boolean visible) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                            // If the ViewPropertyAnimator API is available
-                            // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
-                            // screen.
-                            if (mControlsHeight == 0) {
-                                mControlsHeight = controlsView.getHeight();
-                            }
-                            if (mShortAnimTime == 0) {
-                                mShortAnimTime = getResources().getInteger(
-                                        android.R.integer.config_shortAnimTime);
-                            }
-                            controlsView.animate()
-                                    .translationY(visible ? 0 : mControlsHeight)
-                                    .setDuration(mShortAnimTime);
-                        } else {
-                            // If the ViewPropertyAnimator APIs aren't
-                            // available, simply show or hide the in-layout UI
-                            // controls.
-                            controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
-                        }
-
-                        if (visible && AUTO_HIDE) {
-                            // Schedule a hide().
-                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
-                        }
-                    }
-                });
-
-        // Set up the user interaction to manually show or hide the system UI.
-        contentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TOGGLE_ON_CLICK) {
-                    mSystemUiHider.toggle();
-                } else {
-                    mSystemUiHider.show();
-                }
-            }
-        });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
+        opacityBtn = (ImageButton)findViewById(R.id.opacity_btn);
+        opacityBtn.setOnClickListener(this);
         start();
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide(100);
+    public void paintClicked(View view)
+    {    drawView.setErase(false);
+        drawView.setPaintAlpha(100);
+        drawView.setBrushSize(drawView.getLastBrushSize());
+        //use chosen color
+        if(view!=currPaint)
+        {//update color
+            ImageButton imgView = (ImageButton)view;
+            String color = view.getTag().toString();
+            drawView.setColor(color);
+            imgView.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+            currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
+            currPaint=(ImageButton)view;
+        }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
+    @Override
+    public void onClick(View view)
+    {//respond to clicks
+
+        if(view.getId()==R.id.draw_btn)
+        {//draw button clicked
+            final Dialog brushDialog = new Dialog(this);
+            brushDialog.setTitle("Brush size:");
+            brushDialog.setContentView(R.layout.brush_chooser);
+            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+            smallBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(false);
+                    drawView.setBrushSize(smallBrush);
+                    drawView.setLastBrushSize(smallBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+            mediumBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(false);
+                    drawView.setBrushSize(mediumBrush);
+                    drawView.setLastBrushSize(mediumBrush);
+                    brushDialog.dismiss();
+                }
+            });
+
+            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+            largeBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(false);
+                    drawView.setBrushSize(largeBrush);
+                    drawView.setLastBrushSize(largeBrush);
+                    brushDialog.dismiss();
+                }
+            });
+
+            brushDialog.show();
         }
-    };
-
-    Handler mHideHandler = new Handler();
-    Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mSystemUiHider.hide();
+        else if(view.getId()==R.id.erase_btn)
+        {//switch to erase - choose size
+            final Dialog brushDialog = new Dialog(this);
+            brushDialog.setTitle("Eraser size:");
+            brushDialog.setContentView(R.layout.brush_chooser);
+            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+            smallBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(smallBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+            mediumBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(mediumBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+            largeBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(largeBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            brushDialog.show();
         }
-    };
+        else if(view.getId()==R.id.new_btn)
+        {AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
+            newDialog.setTitle("New drawing");
+            newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
+            newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    drawView.startNew();
+                    dialog.dismiss();
+                }
+            });
+            newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    dialog.cancel();
+                }
+            });
+            newDialog.show();
+        }
 
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
-        mHideHandler.removeCallbacks(mHideRunnable);
-        mHideHandler.postDelayed(mHideRunnable, delayMillis);
+        else if(view.getId()==R.id.save_btn)
+        { //save drawing
+
+            //save drawing
+            AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
+            saveDialog.setTitle("Save drawing");
+            saveDialog.setMessage("Save drawing to device Gallery?");
+            saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    //save drawing
+                    drawView.setDrawingCacheEnabled(true);
+                    //attempt to save
+                    String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
+                    //feedback
+                    if(imgSaved!=null){
+                        Toast savedToast = Toast.makeText(getApplicationContext(),
+                                "Drawing saved to Gallery!", Toast.LENGTH_SHORT);
+                        savedToast.show();
+                    }
+                    else{
+                        Toast unsavedToast = Toast.makeText(getApplicationContext(),
+                                "Oops! Image could not be saved.", Toast.LENGTH_SHORT);
+                        unsavedToast.show();
+                    }
+                    drawView.destroyDrawingCache();
+                }
+            });
+            saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    dialog.cancel();
+                }
+            });
+            saveDialog.show();
+        }
+
+        else if(view.getId()==R.id.opacity_btn)
+        {
+            //launch opacity chooser
+            final Dialog seekDialog = new Dialog(this);
+            seekDialog.setTitle("Opacity level:");
+            seekDialog.setContentView(R.layout.opacity_chooser);
+            final TextView seekTxt = (TextView)seekDialog.findViewById(R.id.opq_txt);
+            final SeekBar seekOpq = (SeekBar)seekDialog.findViewById(R.id.opacity_seek);
+            seekOpq.setMax(100);
+            int currLevel = drawView.getPaintAlpha();
+            seekTxt.setText(currLevel+"%");
+            seekOpq.setProgress(currLevel);
+            seekOpq.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    seekTxt.setText(Integer.toString(progress)+"%");
+                }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {}
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {}
+            });
+            Button opqBtn = (Button)seekDialog.findViewById(R.id.opq_ok);
+            opqBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setPaintAlpha(seekOpq.getProgress());
+                    seekDialog.dismiss();
+                }
+            });
+            seekDialog.show();
+
+        }
+
     }
 }
