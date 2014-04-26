@@ -1,12 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#FFCCCCCC"
-              android:orientation="vertical"
-              tools:context="com.realtime_draw.realtimedraw.app.FullscreenActivity" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCCCCCC"
+    android:orientation="vertical"
+    tools:context="com.realtime_draw.realtimedraw.app.FullscreenActivity" >
 
     <!-- Top Buttons -->
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -48,6 +50,14 @@
             android:layout_height="fill_parent"
             android:contentDescription="@string/save"
             android:src="@drawable/ip4" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:id="@+id/btnback"
+            android:layout_gravity="right" />
+
     </LinearLayout>
 
     <!-- Custom View -->
