@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Draw Now"
+        android:text="Draw now"
         android:id="@+id/draw_now"
         android:background="#ff2627"
         android:singleLine="false"
@@ -29,7 +29,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Watch"
+        android:text="Play last drawing"
         android:id="@+id/watch"
         android:textSize="20dp"
         android:textColor="#5749fd"

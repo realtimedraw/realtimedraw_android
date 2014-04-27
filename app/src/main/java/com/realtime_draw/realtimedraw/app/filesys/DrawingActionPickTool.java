@@ -3,31 +3,36 @@ package com.realtime_draw.realtimedraw.app.filesys;
 import android.graphics.Canvas;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
-public class DrawingActionPickTool implements DrawingActionInterface {
-    private DrawingToolInterface tool_;
+public class DrawingActionPickTool extends DrawingAction {
+    private DrawingTool tool_;
 
-    public DrawingActionPickTool(DrawingToolInterface tool){ tool_ = tool; }
-
-    public void encode(OutputStream stream) throws IOException {
-        stream.write((byte) DrawingActionEnum.PICK_TOOL.ordinal());
-        tool_.encode(stream);
+    public DrawingActionPickTool(DrawingTool tool) {
+        tool_ = tool;
     }
 
-    public DrawingToolInterface getTool(){
+    @Override
+    protected void encodeSubClass(OutputStream outputStream) throws IOException {
+        tool_.encode(outputStream);
+    }
+
+    @Override
+    protected int getEncodedSubClassSize() {
+        return 1 + tool_.getEncodedSize();
+    }
+
+    public DrawingTool getTool() {
         return tool_;
     }
 
-    public int getEncodedSize(){
-        return 1+tool_.getEncodedSize();
-    }
-
-    public DrawingActionEnum getType(){
+    public DrawingActionEnum getType() {
         return DrawingActionEnum.PICK_TOOL;
     }
 
-    public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
+    public void drawOnCanvas(Canvas canvas, DrawingPlayerState state) {
         state.tool = tool_;
     }
+
 }

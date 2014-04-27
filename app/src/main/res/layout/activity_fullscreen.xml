@@ -17,7 +17,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/new_btn"
+            android:id="@+id/clear_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="@string/start_new"
@@ -44,18 +44,11 @@
             android:contentDescription="@string/opacity"
             android:src="@drawable/opacity" />
 
-        <ImageButton
-            android:id="@+id/save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/save"
-            android:src="@drawable/ip4" />
-
         <Button
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:text="X"
-            android:id="@+id/btnback"
+            android:id="@+id/back_btn"
             android:layout_gravity="right" />
 
     </LinearLayout>

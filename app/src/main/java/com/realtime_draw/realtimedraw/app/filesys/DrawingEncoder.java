@@ -11,16 +11,18 @@ public class DrawingEncoder extends Thread {
     private DataOutputStream out;
     private DrawingFrameGroup frameGroup;
     private DrawingPlayer player;
-    private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<QueueItem>();
+    private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<>();
 
     public DrawingEncoder(OutputStream outputStream, Bitmap initialFrame){
         out = new DataOutputStream(outputStream);
         frameGroup = new DrawingFrameGroup(initialFrame);
-        player = new DrawingPlayer(initialFrame);
+        player = new DrawingPlayer();
+        player.setCurrentFrame(initialFrame);
+
         frameGroup.setTimeIndex(0);
     }
 
-    public void queueAction(int timeIndex, DrawingActionInterface action){
+    public void queueAction(int timeIndex, DrawingAction action){
         queue.addLast(new QueueItem(timeIndex, action));
     }
 
@@ -51,8 +53,8 @@ public class DrawingEncoder extends Thread {
 
     private class QueueItem {
         public int timeIndex;
-        public DrawingActionInterface action;
-        public QueueItem(int timeIndex, DrawingActionInterface action){
+        public DrawingAction action;
+        public QueueItem(int timeIndex, DrawingAction action){
             this.timeIndex = timeIndex;
             this.action = action;
         }
