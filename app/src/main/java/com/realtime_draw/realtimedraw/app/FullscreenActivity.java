@@ -124,7 +124,18 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
             }
         });
 
+        final Button btnGalery = (Button) findViewById(R.id.galery);
+        btnWatch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                galery();
+            }
+        });
 
+    }
+
+    public void galery() {
+        //setContentView();
     }
 
     public void showToast(final String toast)

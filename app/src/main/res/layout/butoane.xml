@@ -29,6 +29,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Draw now"
+        android:id="@+id/button"
+        android:background="#ff2627"
+        android:singleLine="false"
+        android:textSize="20dp"
+        android:enabled="true"
+        android:textColor="#5e4bff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="195dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Play last drawing"
         android:id="@+id/watch"
         android:textSize="20dp"
@@ -36,6 +49,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="145dp"
         android:background="#ff3251" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All the pictures"
+        android:id="@+id/galery"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff343aff"
+        android:background="#ff2627"
+        android:enabled="true" />
 
 
 </RelativeLayout>
