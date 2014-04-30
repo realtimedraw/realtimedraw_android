@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\Copiii\AndroidStudioProjects\realtimedraw_android-adi_record" />
-            <option value="C:\Users\Copiii\AndroidStudioProjects\realtimedraw_android-adi_record\app" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
       </GradleProjectSettings>

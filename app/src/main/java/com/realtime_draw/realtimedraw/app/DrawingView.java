@@ -4,160 +4,131 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.realtime_draw.realtimedraw.app.R;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingActionClear;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingActionPickColor;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingActionUseCoord;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingPlayerState;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingRecorder;
+import com.realtime_draw.realtimedraw.app.filesys.UseCoordEnum;
 
-public class DrawingView extends View
-{
-	
-	//drawing path
-	private Path drawPath;
-	//drawing and canvas paint
-	private Paint drawPaint, canvasPaint;
-	//initial color
-	private int paintColor = 0xFF660000;
-	//canvas
-	private Canvas drawCanvas;
-	//canvas bitmap
-	private Bitmap canvasBitmap;
-	private float brushSize, lastBrushSize;
-	private boolean erase=false;
-	private int paintAlpha = 255;
-	
-	
-	
-	
-	public DrawingView(Context context, AttributeSet attrs)
-	  {super(context, attrs);
-	    setupDrawing();
-	   }
+public class DrawingView extends View {
+    private DrawingPlayerState state;
+    private Canvas canvas;
+    private Bitmap bitmap = null;
+    private FullscreenActivity activity = null;
+    public boolean isRecording = false;
+    private DrawingRecorder recorder;
 
-	private void setupDrawing()
-	{   
-		brushSize = getResources().getInteger(R.integer.medium_size);
-		lastBrushSize = brushSize;
-		
-		drawPath = new Path();
-		drawPaint = new Paint();
-		drawPaint.setColor(paintColor);
-		drawPaint.setAntiAlias(true);
-		drawPaint.setStrokeWidth(20);
-		drawPaint.setStyle(Paint.Style.STROKE);
-		drawPaint.setStrokeJoin(Paint.Join.ROUND);
-		drawPaint.setStrokeCap(Paint.Cap.ROUND);
-		
-		canvasPaint = new Paint(Paint.DITHER_FLAG);
+
+    public DrawingView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        state = new DrawingPlayerState();
     }
-	
-	
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) 
-	{
-	 //view given size
-		super.onSizeChanged(w, h, oldw, oldh);
-		canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-		drawCanvas = new Canvas(canvasBitmap);
-	}
-	
-	
-	@Override
-	protected void onDraw(Canvas canvas)
-	{
-	 //draw view
-	 canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-	 canvas.drawPath(drawPath, drawPaint);
-	}
-	
-	
-	//register user as drawing action
-	@Override
-	public boolean onTouchEvent(MotionEvent event)
-	{
-	 //detect user touch  
-	 float touchX = event.getX();
-	 float touchY = event.getY();
-	 
-	 switch (event.getAction()) 
-	 {
-	 case MotionEvent.ACTION_DOWN:
-	     drawPath.moveTo(touchX, touchY);
-	     break;
-	 case MotionEvent.ACTION_MOVE:
-	     drawPath.lineTo(touchX, touchY);
-	     break;
-	 case MotionEvent.ACTION_UP:
-		 drawPath.lineTo(touchX, touchY);
-	     drawCanvas.drawPath(drawPath, drawPaint);
-	     drawPath.reset();
-	     break;
-	 default:
-	     return false;
-	 }
-	 
-	 invalidate();
-	 return true;
-	}
-	
-	
-	public void setColor(String newColor)
-	{//set color
-	  invalidate();
-	  paintColor = Color.parseColor(newColor);
-	  drawPaint.setColor(paintColor);
-	}
-	
-	
-	public void setBrushSize(float newSize)
-	{//update size
-		float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-			    newSize, getResources().getDisplayMetrics());
-			brushSize=pixelAmount;
-			drawPaint.setStrokeWidth(brushSize);
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        if (bitmap != null) {
+            return;
+        }
+        super.onSizeChanged(w, h, oldw, oldh);
+        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
+        recorder = new DrawingRecorder(bitmap);
+        clearScreen();
+        setColor("black");
     }
-	
-	
-	public void setLastBrushSize(float lastSize){
-	    lastBrushSize=lastSize;
-	}
-	public float getLastBrushSize(){
-	    return lastBrushSize;
-	}
-	
-	public void setErase(boolean isErase)
-	{//set erase true or false  
-	 erase=isErase;
-	 if(erase) drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-	 else drawPaint.setXfermode(null);
+
+    public byte[] stopRecording() throws Throwable {
+        return recorder.stop();
     }
-	
-	
-	
-	public void startNew()
-	{
-	    drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
-	    invalidate();
-	}
-	
-	
-	public int getPaintAlpha(){
-	    return Math.round((float)paintAlpha/255*100);
-	}
-	
-	
-	public void setPaintAlpha(int newAlpha){
-	    paintAlpha=Math.round((float)newAlpha/100*255);
-	    drawPaint.setColor(paintColor);
-	    drawPaint.setAlpha(paintAlpha);
-	}
-	
-	
-	
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.drawPath(state.path, state.paint);
+    }
+
+
+    //register user as drawing action
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                state.path.moveTo(touchX, touchY);
+                if (isRecording)
+                    recorder.addNowAction(new DrawingActionUseCoord((short) touchX, (short) touchY, UseCoordEnum.TOUCH_DOWN));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                state.path.lineTo(touchX, touchY);
+                if (isRecording)
+                    recorder.addNowAction(new DrawingActionUseCoord((short) touchX, (short) touchY, UseCoordEnum.TOUCH_MOVE));
+                break;
+            case MotionEvent.ACTION_UP:
+                state.path.lineTo(touchX, touchY);
+                canvas.drawPath(state.path, state.paint);
+                state.path.reset();
+                if (isRecording)
+                    recorder.addNowAction(new DrawingActionUseCoord((short) touchX, (short) touchY, UseCoordEnum.TOUCH_UP));
+                break;
+            default:
+                return false;
+        }
+        invalidate();
+        return true;
+    }
+
+
+    public void setColor(String newColor) {//set color
+        invalidate();
+        int paintColor = Color.parseColor(newColor);
+        if (isRecording)
+            recorder.addNowAction(new DrawingActionPickColor(paintColor));
+        state.paint.setColor(paintColor);
+    }
+
+
+    public void setBrushSize(short size) {
+        state.paint.setStrokeWidth(size);
+    }
+
+    public short getBrushSize(){
+        return (short) state.paint.getStrokeWidth();
+    }
+
+    public void clearScreen() {
+        canvas.drawColor(state.paint.getColor());
+        if(isRecording)
+            recorder.addNowAction(new DrawingActionClear());
+        invalidate();
+    }
+
+
+    public int getPaintAlpha() {
+        return Math.round((float) state.paint.getAlpha() / 255 * 100);
+    }
+
+
+    public void setPaintAlpha(int newAlpha) {
+        state.paint.setAlpha(Math.round((float) newAlpha / 100 * 255));
+//        if(isRecording)
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public FullscreenActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(FullscreenActivity activity) {
+        this.activity = activity;
+    }
 }
+

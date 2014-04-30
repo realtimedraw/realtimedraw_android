@@ -3,11 +3,12 @@ package com.realtime_draw.realtimedraw.app.filesys;
 import android.graphics.Canvas;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class DrawingActionPickColor implements DrawingActionInterface {
+public class DrawingActionPickColor extends DrawingAction {
 	private int color_;
 
 	public DrawingActionPickColor(int color) {
@@ -18,23 +19,29 @@ public class DrawingActionPickColor implements DrawingActionInterface {
 		return color_;
 	}
 
-	public void encode(OutputStream stream) throws IOException {
-		stream.write((byte) DrawingActionEnum.PICK_COLOR.ordinal());
-        stream.write((byte)(color_>>24));
-        stream.write((byte)(color_>>16));
-        stream.write((byte)(color_>> 8));
-        stream.write((byte)(color_    ));
-	}
-    
-    public int getEncodedSize(){
-        return 5;
-    }
-
     public DrawingActionEnum getType(){
         return DrawingActionEnum.PICK_COLOR;
     }
 
     public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
-        state.color = color_;
+        state.paint.setColor(color_);
+    }
+
+    @Override
+    protected void encodeSubClass(OutputStream outputStream) throws IOException {
+        outputStream.write((byte)(color_>>24));
+        outputStream.write((byte)(color_>>16));
+        outputStream.write((byte)(color_>> 8));
+        outputStream.write((byte)(color_    ));
+    }
+
+    @Override
+    protected int getEncodedSubClassSize() {
+        return 4;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+color_;
     }
 }
