@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@drawable/background"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:paddingTop="100dp"
+        android:paddingBottom="200dp">
+    <Button
+        android:id="@+id/watch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="watch"
+        android:text="@string/watch"
+        android:textColor="#5749fd"
+        android:textSize="40sp"
+        android:background="@android:color/transparent"
+        android:enabled="true"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/draw_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:onClick="draw_now"
+        android:singleLine="false"
+        android:text="@string/draw_now"
+        android:textColor="#5e4bff"
+        android:background="@android:color/transparent"
+        android:textSize="40dp"
+        android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

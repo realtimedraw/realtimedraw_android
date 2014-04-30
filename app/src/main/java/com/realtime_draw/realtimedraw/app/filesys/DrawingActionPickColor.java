@@ -24,7 +24,7 @@ public class DrawingActionPickColor extends DrawingAction {
     }
 
     public void drawOnCanvas(Canvas canvas, DrawingPlayerState state){
-        state.color = color_;
+        state.paint.setColor(color_);
     }
 
     @Override
@@ -38,5 +38,10 @@ public class DrawingActionPickColor extends DrawingAction {
     @Override
     protected int getEncodedSubClassSize() {
         return 4;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+color_;
     }
 }

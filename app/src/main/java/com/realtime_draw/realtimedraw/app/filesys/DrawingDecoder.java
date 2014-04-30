@@ -12,25 +12,42 @@ public class DrawingDecoder {
 
     private Thread reader = new Thread(new Runnable() {
         @Override
-        synchronized public void run() {
-            if(status != null){
-                exception = new Exception("already finished decoding");
-                status = ReaderStatus.ERROR;
-                return;
+        public void run() {
+            synchronized (this) {
+                if (status != null) {
+//                    exception = new Exception("reader: already finished");
+                    status = ReaderStatus.ERROR;
+                    return;
+                }
+                status = ReaderStatus.RUNNING;
             }
-            status = ReaderStatus.RUNNING;
             try {
                 while(true) {
-                    synchronized (buffer) {
+                    synchronized (this) {
                         buffer.put(DrawingFrameGroup.decode(in));
+//                        System.out.println("reader: notifying...");
+                        synchronized (reader) {
+                            reader.notify();
+                        }
                     }
                 }
             } catch (EOFException e) {
-                status = ReaderStatus.FINISHED;
-                return;
+                synchronized (this) {
+                    status = ReaderStatus.FINISHED;
+//                    System.out.println("reader: finished");
+                    synchronized (reader) {
+                        reader.notify();
+                    }
+                }
             } catch (Exception e){
-                status = ReaderStatus.ERROR;
-                exception = e;
+                synchronized (this) {
+                    status = ReaderStatus.ERROR;
+                    exception = e;
+//                    System.out.println("reader: error");
+                    synchronized (reader) {
+                        reader.notify();
+                    }
+                }
             }
         }
     });
@@ -40,21 +57,25 @@ public class DrawingDecoder {
         reader.start();
     }
 
-    public synchronized DrawingFrameGroup getDrawingFrameGroup() throws Exception {
-        synchronized (buffer) {
+    public DrawingFrameGroup getDrawingFrameGroup() throws Exception {
+        synchronized (this) {
             if (status == ReaderStatus.ERROR) {
                 throw exception;
             }
-            if (buffer.size() == 0)
+            if (buffer.size() == 0) {
                 if (status == ReaderStatus.FINISHED) {
                     status = ReaderStatus.ERROR;
+                    System.out.println("decoder: Get last DFG");
                     throw exception = new EOFException();
-                } else {
-                    synchronized (reader) {
-                        reader.wait();
-                    }
                 }
-            return buffer.take();
+            }else
+                return buffer.take();
+        }
+        synchronized (reader) {
+//            System.out.println("decoder: waiting for reader...");
+            reader.wait();
+//            System.out.println("decoder: notified");
+            return getDrawingFrameGroup();
         }
     }
 

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class DrawingFrameGroup {
     private int encodedSize;
     private ArrayList<DrawingFrame> frames = new ArrayList<>();
-    private byte[] keyFrame;
+    private byte[] keyFrame_byte;
+    private Bitmap keyFrame_bitmap;
     private int timeIndex = -1;
 
     private DrawingFrameGroup() {
@@ -24,11 +25,12 @@ public class DrawingFrameGroup {
     }
 
     public DrawingFrameGroup(Bitmap start) {
+        keyFrame_bitmap = start;
         long g = System.nanoTime();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         start.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        keyFrame = baos.toByteArray();
-        encodedSize = keyFrame.length + 14;
+        keyFrame_byte = baos.toByteArray();
+        encodedSize = keyFrame_byte.length + 14;
         long end = System.nanoTime();
         System.out.println("Compressed to png: " + ((end - g) / 1000000) + " milliseconds");
     }
@@ -50,8 +52,12 @@ public class DrawingFrameGroup {
         group.timeIndex = dis.readInt();// timeIndex 4bytes int
         int size = dis.readInt(); // keyFrameSize 4bytes int
         group.encodedSize += size;
-        group.keyFrame = new byte[size];
-        dis.readFully(group.keyFrame);
+        group.keyFrame_byte = new byte[size];
+        dis.readFully(group.keyFrame_byte);
+        long g = System.nanoTime();
+        group.keyFrame_bitmap = BitmapFactory.decodeByteArray(group.keyFrame_byte, 0, group.keyFrame_byte.length).copy(Bitmap.Config.ARGB_8888, true);
+        long end = System.nanoTime();
+        System.out.println("Decompressed from png: " + ((end - g) / 1000000) + " milliseconds");
         while (framesNumber > 0) {
             try {
                 group.appendFrame(DrawingFrame.decode(inputStream));
@@ -84,14 +90,14 @@ public class DrawingFrameGroup {
         stream.write((byte) (timeIndex >> 16));
         stream.write((byte) (timeIndex >> 8));
         stream.write((byte) (timeIndex));
-        int keyFrameLength = keyFrame.length;
+        int keyFrameLength = keyFrame_byte.length;
         stream.write((byte) (keyFrameLength >> 24));
         stream.write((byte) (keyFrameLength >> 16));
         stream.write((byte) (keyFrameLength >> 8));
         stream.write((byte) (keyFrameLength));
-        stream.write(keyFrame);
+        stream.write(keyFrame_byte);
         for (int i = 0; i < framesNumber; ++i) {
-            frames.get(framesNumber).encode(stream);
+            frames.get(i).encode(stream);
         }
     }
 
@@ -100,32 +106,11 @@ public class DrawingFrameGroup {
         frames.add(frame);
     }
 
-    public synchronized void insertFrame(DrawingFrame frame) throws Exception {
-        if (isGroupEmpty()) {
-            throw new Exception("Empty group can only reference to another group");
-        }
-        encodedSize += frame.getEncodedSize();
-        addFrameBS(frame, 0, frames.size());
-    }
-
-    private void addFrameBS(DrawingFrame frame, int left, int right) {
-        if (right < left) {
-            frames.add(right, frame);
-            return;
-        }
-        int mid = (left + right) / 2;
-        if (frames.get(mid).getTimeIndex() < frame.getTimeIndex()) {
-            addFrameBS(frame, mid + 1, right);
-            return;
-        }
-        addFrameBS(frame, left, mid - 1);
-    }
-
-    public Bitmap getKeyFrame() throws Exception {
+    public Bitmap getKeyFrameBitmap() throws Exception {
         if (isGroupEmpty()) {
             throw new Exception("Empty group cannot have keyframe");
         }
-        return BitmapFactory.decodeByteArray(keyFrame, 0, keyFrame.length);
+        return keyFrame_bitmap;
     }
 
     public int getEncodedSize() {
@@ -160,7 +145,7 @@ public class DrawingFrameGroup {
             }
             s += frame;
         }
-        s += "}, " + keyFrame.length + ", " + timeIndex + "}";
+        s += "}, " + keyFrame_byte.length + ", " + timeIndex + "}";
         return s;
     }
 }

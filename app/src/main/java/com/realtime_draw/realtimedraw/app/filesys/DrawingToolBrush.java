@@ -9,6 +9,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class DrawingToolBrush extends DrawingTool {
+    public static final short SMALL=10, MEDIUM=20, LARGE=30, DEFAULT = MEDIUM;
+
     private short dimension_;
 
     public DrawingToolBrush(short dimension){
@@ -19,6 +21,10 @@ public class DrawingToolBrush extends DrawingTool {
         return dimension_;
     }
 
+    public void setDimension(short dimension){
+        dimension_=dimension;
+    }
+
     public DrawingToolEnum getType(){
         return DrawingToolEnum.BRUSH;
     }
@@ -26,24 +32,18 @@ public class DrawingToolBrush extends DrawingTool {
     public void useCoords(Canvas canvas, DrawingPlayerState state, short x, short y, UseCoordEnum type) {
         switch (type) {
             case TOUCH_DOWN:
-                state.drawPath.moveTo(x, y);
+                state.path.moveTo(x, y);
                 break;
             case TOUCH_MOVE:
-                state.drawPath.lineTo(x, y);
+                state.path.lineTo(x, y);
                 break;
             case TOUCH_UP:
-                state.drawPath.lineTo(x, y);
-                canvas.drawPath(state.drawPath, state.drawPaint);
-                state.drawPath.reset();
+                state.path.lineTo(x, y);
+                canvas.drawPath(state.path, state.paint);
+                state.path.reset();
                 break;
         }
-
-
-
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(state.color);
-        canvas.drawCircle(x, y, dimension_, paint);
+        //canvas.drawPath(state.path, state.paint);
     }
 
     @Override
@@ -55,6 +55,11 @@ public class DrawingToolBrush extends DrawingTool {
     @Override
     protected int getEncodedSubClassSize() {
         return 2;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+dimension_;
     }
 }
 //TODO: custom shapes; now painting circles

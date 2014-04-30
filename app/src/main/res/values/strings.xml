@@ -13,4 +13,9 @@
     <string name="med">Medium</string>
     <string name="lrg">Large</string>
     <string name="opacity">Opacity</string>
+    <string name="draw_now">Draw now</string>
+    <string name="watch">Play last drawing</string>
+    <string name="back">X</string>
+    <string name="watching_back">back</string>
+    <string name="watching_play">play/pause</string>
 </resources>

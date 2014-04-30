@@ -35,4 +35,8 @@ public class DrawingActionPickTool extends DrawingAction {
         state.tool = tool_;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+" "+tool_;
+    }
 }

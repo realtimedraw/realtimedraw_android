@@ -49,4 +49,9 @@ public class DrawingActionUseCoord extends DrawingAction {
     protected int getEncodedSubClassSize() {
         return 5;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+x_+","+y_+" "+type_;
+    }
 }

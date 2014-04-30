@@ -31,32 +31,18 @@
             android:src="@drawable/ip2" />
 
         <ImageButton
-            android:id="@+id/erase_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/erase"
-            android:src="@drawable/ip3" />
-
-        <ImageButton
             android:id="@+id/opacity_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="@string/opacity"
             android:src="@drawable/opacity" />
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:text="X"
-            android:id="@+id/back_btn"
-            android:layout_gravity="right" />
-
     </LinearLayout>
 
     <!-- Custom View -->
 
     <com.realtime_draw.realtimedraw.app.DrawingView
-        android:id="@+id/drawing"
+        android:id="@+id/drawing_view"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="3dp"
@@ -77,10 +63,11 @@
         <!-- Top Row -->
 
         <LinearLayout
-            android:id="@+id/paint_colors"
+            android:id="@+id/paint_colors_row1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:focusableInTouchMode="false">
 
             <ImageButton
                 android:layout_width="@dimen/large_brush"
@@ -132,7 +119,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:focusableInTouchMode="false"
+            android:id="@+id/paint_colors_row2">
 
             <ImageButton
                 android:layout_width="@dimen/large_brush"

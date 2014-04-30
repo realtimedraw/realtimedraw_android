@@ -21,4 +21,9 @@ public abstract class DrawingTool {
     abstract protected void encodeSubClass(OutputStream outputStream) throws IOException;
 
     abstract protected int getEncodedSubClassSize();
+
+    @Override
+    public String toString() {
+        return ""+getType();
+    }
 }

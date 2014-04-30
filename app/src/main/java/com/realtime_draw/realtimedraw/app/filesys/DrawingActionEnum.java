@@ -25,6 +25,12 @@ public enum DrawingActionEnum {
         public DrawingActionPickTool decode(InputStream inputStream) throws Exception {
             return new DrawingActionPickTool(DrawingToolEnum.decodeType(new DataInputStream(inputStream).readByte()).decode(inputStream));
         }
+    },
+    CLEAR{
+        @Override
+        public DrawingAction decode(InputStream inputStream) throws Exception {
+            return new DrawingActionClear();
+        }
     };
 
     abstract public DrawingAction decode(InputStream inputStream) throws Exception;
