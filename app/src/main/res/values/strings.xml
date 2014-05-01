@@ -17,4 +17,6 @@
     <string name="watch">Play last drawing</string>
     <string name="watching_back">back</string>
     <string name="watching_play">play/pause</string>
+    <string name="draw_and_send"><![CDATA[Draw & send]]></string>
+    <string name="receive_and_play"><![CDATA[Receive & play]]></string>
 </resources>

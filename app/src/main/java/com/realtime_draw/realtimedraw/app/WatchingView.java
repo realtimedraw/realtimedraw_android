@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.realtime_draw.realtimedraw.app.filesys.DrawingAction;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingDecoder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingPlayer;
 
@@ -15,16 +16,18 @@ import java.io.EOFException;
 import java.io.InputStream;
 
 public class WatchingView extends View {
-    private FullscreenActivity activity;
+    private boolean passive = false;
+    final private FullscreenActivity activity = (FullscreenActivity) getContext();
     private InputStream in;
     private boolean playing = false;
     private boolean finished = false;
     private Bitmap bitmap = null;
     private Paint paint;
     private Path path;
+    private int currentW, currentH;
     final private Object lock = new Object();
-    final DrawingPlayer player = new DrawingPlayer();
-    final Thread displayer = new Thread(new Runnable() {
+    final private DrawingPlayer player = new DrawingPlayer();
+    final private Thread displayer = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -52,8 +55,8 @@ public class WatchingView extends View {
             }
         }
 
-    });
-    final Thread reader = new Thread(new Runnable() {
+    }, "Displayer");
+    private Thread reader = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -75,7 +78,8 @@ public class WatchingView extends View {
                 e.printStackTrace();
             }
         }
-    });
+    }, "Watching reader");
+
 
     public WatchingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -101,6 +105,15 @@ public class WatchingView extends View {
         finished = false;
         reader.start();
         displayer.start();
+        passive = false;
+    }
+
+    public void passivePlay(){
+        activity.togglePlayButton(getResources().getDrawable(android.R.drawable.ic_media_pause));
+        playing = true;
+        finished = false;
+        displayer.start();
+        passive = true;
     }
 
     public void pause() {
@@ -120,11 +133,24 @@ public class WatchingView extends View {
         finished = true;
     }
 
-    public void setActivity(FullscreenActivity activity) {
-        this.activity = activity;
-    }
+//    public void setActivity(FullscreenActivity activity) {
+//        this.activity = activity;
+//    }
 
     public boolean isFinished(){
         return finished;
+    }
+
+    public void playAction(final DrawingAction action) {
+        player.playAction(action);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        currentW = w;
+        currentH = h;
+        if(passive)
+            player.setCurrentFrame(Bitmap.createBitmap(currentW, currentH, Bitmap.Config.ARGB_8888));
     }
 }

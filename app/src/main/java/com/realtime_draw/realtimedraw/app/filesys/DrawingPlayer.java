@@ -12,11 +12,18 @@ public class DrawingPlayer {
 
     public void playAction(DrawingAction action) {
 //        System.out.println(action);
-        action.drawOnCanvas(canvas, state);
+        synchronized (this) {
+            action.drawOnCanvas(canvas, state);
+            notify();
+        }
     }
 
     public void setCurrentFrame(Bitmap bitmap) {
-        currentFrame = bitmap;
+        synchronized (this) {
+            currentFrame = bitmap;
+            canvas = new Canvas(currentFrame);
+            notify();
+        }
     }
 
     public Bitmap getCurrentFrame() {
@@ -24,28 +31,18 @@ public class DrawingPlayer {
     }
 
     public void playGroup(DrawingFrameGroup group) throws Exception {
-//        System.out.println("player: playing group...");
         if (group.isGroupEmpty()) {
             return;
         }
         while (System.currentTimeMillis() - startTime < group.getTimeIndex()) {
             Thread.sleep(5);
         }
-        synchronized (this) {
-            currentFrame = group.getKeyFrameBitmap();
-            canvas = new Canvas(currentFrame);
-            notify();
-//            System.out.println("player: keyframe, notifying...");
-        }
+        setCurrentFrame(group.getKeyFrameBitmap());
         for (DrawingFrame frame : group.getFrames()) {
             while (System.currentTimeMillis() - startTime < frame.getTimeIndex() + group.getTimeIndex()) {
                 Thread.sleep(5);
             }
-            synchronized (this) {
-                playAction(frame.getDrawingAction());
-                notify();
-//                System.out.println("player: frame, notifying...");
-            }
+            playAction(frame.getDrawingAction());
         }
     }
 

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,30 +16,47 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.realtime_draw.realtimedraw.app.filesys.DrawingAction;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingDecoder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
+import com.realtime_draw.realtimedraw.app.filesys.DrawingRecorder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingToolBrush;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
-import de.tavendo.autobahn.WebSocketConnection;
-import de.tavendo.autobahn.WebSocketException;
-import de.tavendo.autobahn.WebSocketHandler;
-
+import de.tavendo.autobahn.Autobahn;
+import de.tavendo.autobahn.AutobahnConnection;
 
 public class FullscreenActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "com.realtime_draw.realtimedraw";
     private ImageButton currPaint, drawBtn, clearBtn, opacityBtn;
-    private final WebSocketConnection mConnection = new WebSocketConnection();
-    private int currentLayout;
+    private final AutobahnConnection mConnection = new AutobahnConnection();
+    private int state = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        currentLayout = R.layout.home;
+        state = 0;
+        setupWAMP();
+    }
+
+    private void setupWAMP() {
+        final String wsuri = "ws://192.168.1.3:8080";
+        mConnection.connect(wsuri, new Autobahn.SessionHandler() {
+            @Override
+            public void onOpen() {
+            }
+            @Override
+            public void onClose(int code, String reason) {
+            }
+        });
     }
 
     public void showToast(final String toast) {
@@ -53,11 +69,10 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
 
     public void watch(View view) {
         setContentView(R.layout.watching_view);
-        currentLayout = R.layout.watching_view;
+        state = 1;
         try {
             FileInputStream input = openFileInput("abc.rec");
             WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
-            watchingView.setActivity(this);
             watchingView.play(input);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +84,7 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
         if(watchingView.isFinished()){
             watchingView.stop();
             setContentView(R.layout.home);
-            currentLayout = R.layout.home;
+            state = 0;
             return;
         }
         watchingView.pause();
@@ -77,7 +92,7 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
 
     public void draw_now(View view) {
         setContentView(R.layout.drawing_view);
-        currentLayout = R.layout.drawing_view;
+        state = 2;
         LinearLayout paintLayout = (LinearLayout) findViewById(R.id.paint_colors_row2);
         currPaint = (ImageButton) paintLayout.getChildAt(3);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
@@ -90,6 +105,73 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
         opacityBtn = (ImageButton) findViewById(R.id.opacity_btn);
         opacityBtn.setOnClickListener(this);
         drawingView.isRecording = true;
+    }
+
+    public void draw_and_send(View view){
+        if(!mConnection.isConnected()){
+            showToast("not connected");
+            return;
+        }
+        draw_now(view);
+        state = 3;
+        DrawingView drawingView = (DrawingView) findViewById(R.id.drawing_view);
+        drawingView.setOnDraw(new DrawingRecorder.onAddListener() {
+            @Override
+            public void onAdd(int timeIndex, DrawingAction action) {
+                try {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    action.encode(baos);
+//                    System.out.println("send: "+action);
+                    MySend mySend = new MySend();
+                    mySend.timeIndex=timeIndex;
+                    mySend.action=baos.toByteArray();
+                    mConnection.publish("test1", mySend);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void receive_and_play(View view){
+        if(!mConnection.isConnected()){
+            showToast("not connected");
+            return;
+        }
+        setContentView(R.layout.watching_view);
+        state = 4;
+        WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
+        watchingView.passivePlay();
+        mConnection.subscribe("test1",
+                MySend.class,
+                new Autobahn.EventHandler() {
+                    @Override
+                    public void onEvent(String topic, final Object event) {
+                        (new Thread(new Runnable(){
+
+                            @Override
+                            public void run() {
+                                try {
+
+                                    MySend evt = (MySend) event;
+                                    ByteArrayInputStream bais = new ByteArrayInputStream(evt.action);
+                                    DrawingAction action = DrawingAction.decode(bais);
+//                                    System.out.println("received: "+action);
+                                    WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
+                                    watchingView.playAction(action);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, "test1.onEvent")).start();
+                    }
+                }
+        );
+    }
+
+    private static class MySend{
+        public int timeIndex;
+        public byte[] action;
     }
 
     public void paintClicked(View view) {
@@ -205,81 +287,28 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((ImageButton)findViewById(R.id.playButton)).setImageDrawable(drawable);
+                ((ImageButton) findViewById(R.id.playButton)).setImageDrawable(drawable);
             }
         });
     }
 
-    private void testDrawing() {
-        try {
-            Thread.sleep(1000);
-            System.out.println("Testing...");
-            Bitmap bitmap = Bitmap.createBitmap(1920, 1080, Bitmap.Config.ARGB_8888);
-            ByteArrayOutputStream enc_out = new ByteArrayOutputStream();
-            DrawingEncoder encoder = new DrawingEncoder(enc_out, bitmap);
-            System.out.println("Starting encoder...");
-            encoder.start();
-            long start = System.nanoTime();
-
-            for (short j = 0; j < 600; ++j) {
-                for (short i = 0; i < 100; ++i) {
-                    //DrawingAction action = new DrawingActionUseCoord(i, j);
-                    //encoder.queueAction(j * 1000 + i, action);
-                }
-            }
-            encoder.queueEOS();
-
-            encoder.join();
-            long end = System.nanoTime();
-            System.out.println("Finished encoding witihin " + ((end - start) / 1000000) + " milliseconds");
-            System.out.println("Output size is " + enc_out.size());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void testws() {
-        final String wsuri = "ws://192.168.1.132:9000";
-
-        try {
-            mConnection.connect(wsuri, new WebSocketHandler() {
-
-                @Override
-                public void onOpen() {
-                    Log.d(TAG, "Status: Connected to " + wsuri);
-                    mConnection.sendTextMessage("Hello, world!");
-                }
-
-                @Override
-                public void onTextMessage(String payload) {
-                    Log.d(TAG, "Got echo: " + payload);
-                }
-
-                @Override
-                public void onClose(int code, String reason) {
-                    Log.d(TAG, "Connection lost.");
-                }
-            });
-        } catch (WebSocketException e) {
-
-            Log.d(TAG, e.toString());
-        }
-    }
-
     @Override
     public void onBackPressed() {
-        switch (currentLayout){
+        switch (state){
             default:
-            case R.layout.home:
+            case 0:
                 super.onBackPressed();
                 break;
-            case R.layout.watching_view:
+            case 4:
+                mConnection.unsubscribe("test1");
+            case 1:
                 WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
                 watchingView.stop();
                 setContentView(R.layout.home);
-                currentLayout = R.layout.home;
+                state = 0;
                 break;
-            case R.layout.drawing_view:
+            case 3:
+            case 2:
                 try {
                     FileOutputStream out = openFileOutput("abc.rec", MODE_PRIVATE);
                     final DrawingView drawingView = (DrawingView) findViewById(R.id.drawing_view);
@@ -293,7 +322,7 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
                     e.printStackTrace();
                 }
                 setContentView(R.layout.home);
-                currentLayout = R.layout.home;
+                state = 0;
                 break;
         }
     }

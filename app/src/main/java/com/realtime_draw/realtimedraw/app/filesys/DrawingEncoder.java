@@ -14,6 +14,7 @@ public class DrawingEncoder extends Thread {
     private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<>();
 
     public DrawingEncoder(OutputStream outputStream, Bitmap initialFrame){
+        super("DrawingEncoder");
         out = new DataOutputStream(outputStream);
         frameGroup = new DrawingFrameGroup(initialFrame);
         player = new DrawingPlayer();
@@ -33,7 +34,8 @@ public class DrawingEncoder extends Thread {
     public synchronized void run() {
         try {
             while (true){
-                QueueItem item = queue.takeFirst();
+                QueueItem item;
+                item = queue.takeFirst();
                 if(item.timeIndex<0){
                     frameGroup.encode(out);
                     frameGroup = null;
@@ -51,7 +53,7 @@ public class DrawingEncoder extends Thread {
         }
     }
 
-    private class QueueItem {
+    public static class QueueItem {
         public int timeIndex;
         public DrawingAction action;
         public QueueItem(int timeIndex, DrawingAction action){

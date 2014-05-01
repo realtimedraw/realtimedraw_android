@@ -44,6 +44,31 @@
         android:textSize="40dp"
         android:layout_weight="1"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/draw_and_send"
+            android:id="@+id/button"
+            android:background="@android:color/transparent"
+            android:enabled="true"
+            android:textColor="#FF5E4BFF"
+            android:textSize="40dp"
+            android:layout_weight="1"
+            android:onClick="draw_and_send"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/receive_and_play"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:textSize="40dp"
+            android:textColor="#ff5e4bff"
+            android:enabled="true"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="20dp"
+            android:onClick="receive_and_play"/>
+
     </LinearLayout>
 
 </LinearLayout>

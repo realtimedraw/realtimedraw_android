@@ -50,7 +50,7 @@ public class DrawingDecoder {
                 }
             }
         }
-    });
+    }, "DrawingDecoder");
 
     public DrawingDecoder(InputStream inputStream) {
         in = inputStream;
