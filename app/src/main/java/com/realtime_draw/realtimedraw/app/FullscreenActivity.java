@@ -4,19 +4,23 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.android.Facebook;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingToolBrush;
 
@@ -28,6 +32,9 @@ import java.io.FileOutputStream;
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
+import com.facebook.*;
+import com.facebook.model.*;
+
 
 
 public class FullscreenActivity extends Activity implements View.OnClickListener {
@@ -36,21 +43,62 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
     private final WebSocketConnection mConnection = new WebSocketConnection();
     private int currentLayout;
 
+
+    ViewStub pic, button;
+    Facebook fb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         currentLayout = R.layout.home;
+
+        Session.openActiveSession(this, true, new Session.StatusCallback() {
+
+            // callback when session changes state
+            @Override
+            public void call(Session session, SessionState state, Exception exception) {
+                if (session.isOpened()) {
+
+                    // make request to the /me API
+                    Request.newMeRequest(session, new Request.GraphUserCallback() {
+
+                        // callback after Graph API response with user object
+                        @Override
+                        public void onCompleted(GraphUser user, Response response) {
+                            if (user != null) {
+                                TextView welcome = (TextView) findViewById(R.id.home);
+                                welcome.setText("Hello " + user.getName() + "!");
+                            }
+                        }
+                    }).executeAsync();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+
+
+
     }
 
 
-        public void showToast(final String toast) {
+    public void showToast(final String toast) {
             runOnUiThread(new Runnable() {
                 public void run() {
                     Toast.makeText(FullscreenActivity.this, toast, Toast.LENGTH_SHORT).show();
                 }
             });
         }
+
+    public void gomenu(View view){
+        setContentView(R.layout.secondh);
+    }
+
 
         public void watch(View view) {
             setContentView(R.layout.watching_view);
@@ -69,8 +117,8 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
             WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
             if(watchingView.isFinished()){
                 watchingView.stop();
-                setContentView(R.layout.home);
-                currentLayout = R.layout.home;
+                setContentView(R.layout.secondh);
+                currentLayout = R.layout.secondh;
                 return;
             }
             watchingView.pause();
@@ -277,8 +325,8 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
                 case R.layout.watching_view:
                     WatchingView watchingView = (WatchingView) findViewById(R.id.watching_view);
                     watchingView.stop();
-                    setContentView(R.layout.home);
-                    currentLayout = R.layout.home;
+                    setContentView(R.layout.secondh);
+                    currentLayout = R.layout.secondh;
                     break;
                 case R.layout.drawing_view:
                     try {
@@ -293,11 +341,13 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
                         showToast("Recording could not be saved!");
                         e.printStackTrace();
                     }
-                    setContentView(R.layout.home);
-                    currentLayout = R.layout.home;
+                    setContentView(R.layout.secondh);
+                    currentLayout = R.layout.secondh;
                     break;
             }
         }
+
+
     }
 
 

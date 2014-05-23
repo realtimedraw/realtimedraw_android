@@ -18,4 +18,5 @@
     <string name="watching_back">back</string>
     <string name="watching_play">play/pause</string>
     <string name="APP_ID"> 566601083457511 </string>
+    <string name="go_menu">Draw now</string>
 </resources>
