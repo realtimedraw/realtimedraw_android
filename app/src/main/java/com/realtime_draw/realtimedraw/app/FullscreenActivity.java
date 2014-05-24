@@ -5,12 +5,19 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.pm.Signature;
 
 import com.facebook.android.Facebook;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
@@ -28,6 +36,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.charset.MalformedInputException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
@@ -37,15 +49,13 @@ import com.facebook.model.*;
 
 
 
-public class FullscreenActivity extends Activity implements View.OnClickListener {
+public class FullscreenActivity extends FragmentActivity implements View.OnClickListener {
     private static final String TAG = "com.realtime_draw.realtimedraw";
     private ImageButton currPaint, drawBtn, clearBtn, opacityBtn;
     private final WebSocketConnection mConnection = new WebSocketConnection();
     private int currentLayout;
+    private MainFragment mainFragment;
 
-
-    ViewStub pic, button;
-    Facebook fb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +63,27 @@ public class FullscreenActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.home);
         currentLayout = R.layout.home;
 
-        Session.openActiveSession(this, true, new Session.StatusCallback() {
+        if (savedInstanceState == null) {
+            // Add the fragment on initial activity setup
+            mainFragment = new MainFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, mainFragment)
+                    .commit();
+        } else {
+            // Or set the fragment from restored state info
+            mainFragment = (MainFragment) getSupportFragmentManager()
+                    .findFragmentById(android.R.id.content);
+        }
+    }
 
-            // callback when session changes state
-            @Override
-            public void call(Session session, SessionState state, Exception exception) {
-                if (session.isOpened()) {
 
-                    // make request to the /me API
-                    Request.newMeRequest(session, new Request.GraphUserCallback() {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.home, container, false);
 
-                        // callback after Graph API response with user object
-                        @Override
-                        public void onCompleted(GraphUser user, Response response) {
-                            if (user != null) {
-                                TextView welcome = (TextView) findViewById(R.id.home);
-                                welcome.setText("Hello " + user.getName() + "!");
-                            }
-                        }
-                    }).executeAsync();
-                }
-            }
-        });
+        return view;
     }
 
     @Override
