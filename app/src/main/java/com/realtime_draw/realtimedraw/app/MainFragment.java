@@ -27,7 +27,12 @@ public class MainFragment extends Fragment{
 
     private static final String TAG = "MainFragment";
     private UiLifecycleHelper uiHelper;
+    private FullscreenActivity activity;
 
+    public MainFragment(FullscreenActivity activity){
+        super();
+        this.activity = activity;
+    }
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -44,6 +49,7 @@ public class MainFragment extends Fragment{
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
         if (state.isOpened()) {
             Log.i(TAG, "Logged in...");
+            activity.WAMP_auth(session.getAccessToken());
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
         }

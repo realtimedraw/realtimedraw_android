@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Alex/Documents/GitHub/realtimedraw_android/facebook/res/values-mdpi/dimens.xml -->
+    <!-- From: file:/C:/Users/Adrian/AndroidStudioProjects/Realtimedraw/facebook/res/values-mdpi/dimens.xml -->
     <eat-comment />
 
     <dimen name="com_facebook_picker_divider_width">1px</dimen>

@@ -73,4 +73,12 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:id="@+id/connectionStatus"
+        android:contentDescription="@string/connection"
+        android:background="#ff1c3280"
+        android:layout_gravity="right"/>
+
 </LinearLayout>
