@@ -19,4 +19,6 @@
     <string name="watching_play">play/pause</string>
     <string name="draw_and_send"><![CDATA[Draw & send]]></string>
     <string name="receive_and_play"><![CDATA[Receive & play]]></string>
+    <string name="APP_ID"> 566601083457511 </string>
+    <string name="go_menu">Draw now</string>
 </resources>
