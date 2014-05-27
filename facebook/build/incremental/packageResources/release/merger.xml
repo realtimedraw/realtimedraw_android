@@ -2,489 +2,489 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res" >
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res" >
             <file
                 name="com_facebook_button_blue"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_blue.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_blue.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_blue_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_blue_focused.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_blue_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_blue_normal.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_blue_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_blue_pressed.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_check"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_check.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_check.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_check_off"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_check_off.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_check_off.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_check_on"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_check_on.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_check_on.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_grey_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_grey_focused.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_grey_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_grey_normal.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_button_grey_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_button_grey_pressed.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_close"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_close.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_close.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_inverse_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_inverse_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_inverse_icon.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_list_divider"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_list_divider.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_list_divider.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_list_section_header_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_list_section_header_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_list_section_header_background.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_loginbutton_silver"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_loginbutton_silver.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_loginbutton_silver.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_logo"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_logo.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_logo.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_item_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_item_background.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_item_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_focused.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_longpressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_longpressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_longpressed.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_pressed.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_selector"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_selector.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_selector.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_selector_background_transition"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_list_selector_disabled"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_list_selector_disabled.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_list_selector_disabled.9.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_picker_top_button"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_picker_top_button.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_picker_top_button.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_place_default_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_place_default_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_place_default_icon.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_profile_default_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_profile_default_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_profile_default_icon.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_profile_picture_blank_portrait"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_profile_picture_blank_portrait.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_profile_picture_blank_portrait.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_profile_picture_blank_square"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_profile_picture_blank_square.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_profile_picture_blank_square.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_top_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_top_background.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_top_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_top_button"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_top_button.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_top_button.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_usersettingsfragment_background_gradient"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_blue_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_blue_focused.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_blue_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_blue_normal.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_blue_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_blue_pressed.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_grey_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_grey_focused.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_grey_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_grey_normal.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_button_grey_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_button_grey_pressed.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_close"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_close.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_close.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_inverse_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_inverse_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_inverse_icon.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_logo"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_logo.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_logo.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_picker_magnifier"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_picker_magnifier.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_picker_magnifier.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_black_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_black_background.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_black_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_black_bottomnub.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_black_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_black_topnub.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_black_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_black_xout.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_background.9.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_bottomnub.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_topnub.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-hdpi\com_facebook_tooltip_blue_xout.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="com_facebook_close"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-ldpi\com_facebook_close.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-ldpi\com_facebook_close.png"
                 qualifiers="ldpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_button_blue_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_button_blue_focused.9.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_button_blue_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_button_blue_normal.9.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_button_blue_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_button_blue_pressed.9.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_inverse_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_inverse_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_inverse_icon.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_picker_magnifier"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_picker_magnifier.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_picker_magnifier.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_black_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_black_background.9.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_black_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_black_bottomnub.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_black_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_black_topnub.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_black_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_black_xout.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_background.9.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_bottomnub.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_topnub.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-mdpi\com_facebook_tooltip_blue_xout.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_blue_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_blue_focused.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_blue_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_blue_normal.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_blue_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_blue_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_blue_pressed.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_focused"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_grey_focused.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_grey_focused.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_normal"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_grey_normal.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_grey_normal.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_button_grey_pressed"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_button_grey_pressed.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_button_grey_pressed.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_close"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_close.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_close.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_inverse_icon"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_inverse_icon.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_inverse_icon.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_logo"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_logo.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_logo.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_picker_magnifier"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_picker_magnifier.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_picker_magnifier.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_background.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_bottomnub.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_topnub.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_black_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_black_xout.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_background"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_background.9.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_background.9.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_bottomnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_bottomnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_bottomnub.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_topnub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_topnub.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_topnub.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_tooltip_blue_xout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_xout.png"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\drawable-xhdpi\com_facebook_tooltip_blue_xout.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="com_facebook_friendpickerfragment"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_friendpickerfragment.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_friendpickerfragment.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_login_activity_layout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_login_activity_layout.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_login_activity_layout.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_activity_circle_row"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_activity_circle_row.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_checkbox"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_checkbox.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_checkbox.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_image"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_image.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_image.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_list_row"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_list_row.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_list_row.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_list_section_header"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_list_section_header.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_list_section_header.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_search_box"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_search_box.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_search_box.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_title_bar"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_title_bar.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_title_bar.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_picker_title_bar_stub"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_picker_title_bar_stub.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_placepickerfragment"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_placepickerfragment.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_placepickerfragment.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_placepickerfragment_list_row"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_search_bar_layout"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_search_bar_layout.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_search_bar_layout.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_tooltip_bubble"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_tooltip_bubble.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_tooltip_bubble.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="com_facebook_usersettingsfragment"
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\layout\com_facebook_usersettingsfragment.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\layout\com_facebook_usersettingsfragment.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values\attrs.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\attrs.xml"
                 qualifiers="" >
                 <declare-styleable name="com_facebook_profile_picture_view" >
                     <attr name="preset_size" >
@@ -562,7 +562,7 @@
                 </declare-styleable>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values\colors.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\colors.xml"
                 qualifiers="" >
                 <color name="com_facebook_picker_search_bar_background" >#f5f5f7
                 </color>
@@ -573,14 +573,14 @@
                 </dimen>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values\drawables.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\drawables.xml"
                 qualifiers="" >
                 <drawable name="com_facebook_picker_default_separator_color" >
 #33464c59
                 </drawable>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values\strings.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\strings.xml"
                 qualifiers="" >
                 <string name="com_facebook_usersettingsfragment_logged_in" >Logged in
                 </string>
@@ -636,7 +636,7 @@
                 </string>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values\styles.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\styles.xml"
                 qualifiers="" >
                 <color name="com_facebook_usersettingsfragment_connected_text_color" >#FFFFFF
                 </color>
@@ -758,7 +758,7 @@ center
                 </dimen>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-es\strings.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-es\strings.xml"
                 qualifiers="es" >
                 <string name="com_facebook_nearby" >Cercano
                 </string>
@@ -812,13 +812,13 @@ center
                 </string>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-hdpi\dimens.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-hdpi\dimens.xml"
                 qualifiers="hdpi" >
                 <dimen name="com_facebook_picker_divider_width" >1px
                 </dimen>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-he\strings.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-he\strings.xml"
                 qualifiers="he" >
                 <string name="com_facebook_requesterror_password_changed" >.הסיסמה שלך בפייסבוק השתנתה, אנא חבר מחדש את האפליקציה עם פייסבוק
                 </string>
@@ -872,7 +872,7 @@ center
                 </string>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-iw\strings.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-iw\strings.xml"
                 qualifiers="iw" >
                 <string name="com_facebook_usersettingsfragment_log_in_button" >התחבר…
                 </string>
@@ -926,29 +926,29 @@ center
                 </string>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-ldpi\dimens.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-ldpi\dimens.xml"
                 qualifiers="ldpi" >
                 <dimen name="com_facebook_picker_divider_width" >1px
                 </dimen>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-mdpi\dimens.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-mdpi\dimens.xml"
                 qualifiers="mdpi" >
                 <dimen name="com_facebook_picker_divider_width" >1px
                 </dimen>
             </file>
             <file
-                path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\res\values-xhdpi\dimens.xml"
+                path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-xhdpi\dimens.xml"
                 qualifiers="xhdpi" >
                 <dimen name="com_facebook_picker_divider_width" >2px
                 </dimen>
             </file>
         </source>
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\build\res\rs\release" />
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\build\res\generated\release" />
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\build\res\rs\release" />
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\build\res\generated\release" />
     </dataSet>
     <dataSet config="release" >
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\src\release\res" />
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\src\release\res" />
     </dataSet>
 
 </merger>

@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.pm.Signature;
 
 import com.facebook.Session;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingAction;
@@ -29,6 +33,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import de.tavendo.autobahn.Autobahn;
 import de.tavendo.autobahn.AutobahnConnection;
@@ -60,9 +66,7 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
             mainFragment = (MainFragment) getSupportFragmentManager()
                     .findFragmentById(android.R.id.content);
         }
-
     }
-
     private void setupWAMP() {
         final String wsuri = "ws://192.168.1.3:8080";
         mConnection.connect(wsuri, new Autobahn.SessionHandler() {

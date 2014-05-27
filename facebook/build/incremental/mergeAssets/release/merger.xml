@@ -2,10 +2,10 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\src\main\assets" />
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\src\main\assets" />
     </dataSet>
     <dataSet config="release" >
-        <source path="C:\Users\Adrian\AndroidStudioProjects\Realtimedraw\facebook\src\release\assets" />
+        <source path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\src\release\assets" />
     </dataSet>
 
 </merger>
