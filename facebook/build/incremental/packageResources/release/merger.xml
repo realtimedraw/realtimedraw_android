@@ -486,27 +486,32 @@
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\attrs.xml"
                 qualifiers="" >
-                <declare-styleable name="com_facebook_profile_picture_view" >
-                    <attr name="preset_size" >
-
-                        <!-- Keep in sync with constants in ProfilePictureView -->
-                        <enum
-                            name="small"
-                            value="-2" />
-                        <enum
-                            name="normal"
-                            value="-3" />
-                        <enum
-                            name="large"
-                            value="-4" />
-                    </attr>
+                <declare-styleable name="com_facebook_login_view" >
                     <attr
-                        name="is_cropped"
+                        name="confirm_logout"
                         format="boolean" />
-                </declare-styleable>
-                <declare-styleable name="com_facebook_friend_picker_fragment" >
                     <attr
-                        name="multi_select"
+                        name="fetch_user_info"
+                        format="boolean" />
+                    <attr
+                        name="login_text"
+                        format="string" />
+                    <attr
+                        name="logout_text"
+                        format="string" />
+                </declare-styleable>
+                <declare-styleable name="com_facebook_place_picker_fragment" >
+                    <attr
+                        name="radius_in_meters"
+                        format="integer" />
+                    <attr
+                        name="results_limit"
+                        format="integer" />
+                    <attr
+                        name="search_text"
+                        format="string" />
+                    <attr
+                        name="show_search_box"
                         format="boolean" />
                 </declare-styleable>
                 <declare-styleable name="com_facebook_picker_fragment" >
@@ -532,45 +537,41 @@
                         name="done_button_background"
                         format="reference" />
                 </declare-styleable>
-                <declare-styleable name="com_facebook_place_picker_fragment" >
+                <declare-styleable name="com_facebook_profile_picture_view" >
+                    <attr name="preset_size" >
+
+                        <!-- Keep in sync with constants in ProfilePictureView -->
+                        <enum
+                            name="small"
+                            value="-2" />
+                        <enum
+                            name="normal"
+                            value="-3" />
+                        <enum
+                            name="large"
+                            value="-4" />
+                    </attr>
                     <attr
-                        name="radius_in_meters"
-                        format="integer" />
-                    <attr
-                        name="results_limit"
-                        format="integer" />
-                    <attr
-                        name="search_text"
-                        format="string" />
-                    <attr
-                        name="show_search_box"
+                        name="is_cropped"
                         format="boolean" />
                 </declare-styleable>
-                <declare-styleable name="com_facebook_login_view" >
+                <declare-styleable name="com_facebook_friend_picker_fragment" >
                     <attr
-                        name="confirm_logout"
+                        name="multi_select"
                         format="boolean" />
-                    <attr
-                        name="fetch_user_info"
-                        format="boolean" />
-                    <attr
-                        name="login_text"
-                        format="string" />
-                    <attr
-                        name="logout_text"
-                        format="string" />
                 </declare-styleable>
             </file>
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\colors.xml"
                 qualifiers="" >
-                <color name="com_facebook_picker_search_bar_background" >#f5f5f7
-                </color>
                 <color name="com_facebook_picker_search_bar_text" >#bcbdc2
                 </color>
 
                 <dimen name="com_facebook_picker_place_image_size" >64dp
                 </dimen>
+
+                <color name="com_facebook_picker_search_bar_background" >#f5f5f7
+                </color>
             </file>
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\drawables.xml"
@@ -582,112 +583,70 @@
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\strings.xml"
                 qualifiers="" >
-                <string name="com_facebook_usersettingsfragment_logged_in" >Logged in
-                </string>
-                <string name="com_facebook_internet_permission_error_message" >WebView login requires INTERNET permission
-                </string>
-                <string name="com_facebook_usersettingsfragment_log_in_button" >Log in…
-                </string>
-                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d were here
-                </string>
-                <string name="com_facebook_requesterror_password_changed" >Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.
-                </string>
-                <string name="com_facebook_logo_content_description" >Facebook Logo
-                </string>
-                <string name="com_facebook_loginview_log_in_button" >Log in with Facebook
-                </string>
-                <string name="com_facebook_choose_friends" >Choose Friends
-                </string>
-                <string name="com_facebook_requesterror_reconnect" >Please log into this app again to reconnect your Facebook account.
-                </string>
-                <string name="com_facebook_requesterror_web_login" >Your Facebook account is locked. Please log into www.facebook.com to continue.
-                </string>
-                <string name="com_facebook_requesterror_permissions" >This app doesn’t have permission to do this. To change permissions, try logging into the app again.
-                </string>
-                <string name="com_facebook_loginview_log_out_action" >Log out
-                </string>
-                <string name="com_facebook_dialogloginactivity_ok_button" >OK
-                </string>
-                <string name="com_facebook_requesterror_relogin" >Please log into this app again to reconnect your Facebook account.
-                </string>
-                <string name="com_facebook_usersettingsfragment_not_logged_in" >Not logged in
-                </string>
-                <string name="com_facebook_nearby" >Nearby
-                </string>
-                <string name="com_facebook_tooltip_default" >New! You\'re in control - choose what info you want to share with apps.
-                </string>
-                <string name="com_facebook_loginview_logged_in_as" >Logged in as: %1$s
-                </string>
-                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
-                </string>
-                <string name="com_facebook_loading" >Loading...
-                </string>
-                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d were here
-                </string>
-                <string name="com_facebook_loginview_cancel_action" >Cancel
+                <string name="com_facebook_picker_done_button_text" >Done
                 </string>
                 <string name="com_facebook_loginview_logged_in_using_facebook" >Logged in using Facebook
                 </string>
-                <string name="com_facebook_picker_done_button_text" >Done
+                <string name="com_facebook_requesterror_reconnect" >Please log into this app again to reconnect your Facebook account.
+                </string>
+                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d were here
+                </string>
+                <string name="com_facebook_usersettingsfragment_log_in_button" >Log in…
+                </string>
+                <string name="com_facebook_loginview_logged_in_as" >Logged in as: %1$s
+                </string>
+                <string name="com_facebook_choose_friends" >Choose Friends
+                </string>
+                <string name="com_facebook_loginview_log_out_action" >Log out
+                </string>
+                <string name="com_facebook_internet_permission_error_title" >AndroidManifest Error
+                </string>
+                <string name="com_facebook_loginview_log_in_button" >Log in with Facebook
+                </string>
+                <string name="com_facebook_logo_content_description" >Facebook Logo
+                </string>
+                <string name="com_facebook_tooltip_default" >New! You\'re in control - choose what info you want to share with apps.
+                </string>
+                <string name="com_facebook_requesterror_relogin" >Please log into this app again to reconnect your Facebook account.
+                </string>
+                <string name="com_facebook_requesterror_password_changed" >Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.
+                </string>
+                <string name="com_facebook_usersettingsfragment_logged_in" >Logged in
+                </string>
+                <string name="com_facebook_requesterror_web_login" >Your Facebook account is locked. Please log into www.facebook.com to continue.
+                </string>
+                <string name="com_facebook_loginview_cancel_action" >Cancel
+                </string>
+                <string name="com_facebook_requesterror_permissions" >This app doesn’t have permission to do this. To change permissions, try logging into the app again.
+                </string>
+                <string name="com_facebook_loading" >Loading...
+                </string>
+                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
                 </string>
                 <string name="com_facebook_loginview_log_out_button" >Log out
                 </string>
-                <string name="com_facebook_internet_permission_error_title" >AndroidManifest Error
+                <string name="com_facebook_dialogloginactivity_ok_button" >OK
+                </string>
+                <string name="com_facebook_internet_permission_error_message" >WebView login requires INTERNET permission
+                </string>
+                <string name="com_facebook_nearby" >Nearby
+                </string>
+                <string name="com_facebook_usersettingsfragment_not_logged_in" >Not logged in
+                </string>
+                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d were here
                 </string>
             </file>
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values\styles.xml"
                 qualifiers="" >
-                <color name="com_facebook_usersettingsfragment_connected_text_color" >#FFFFFF
-                </color>
-
-                <dimen name="com_facebook_profilepictureview_preset_size_normal" >100dp
-                </dimen>
-                <dimen name="com_facebook_loginview_padding_left" >12dip
-                </dimen>
-                <dimen name="com_facebook_loginview_compound_drawable_padding" >12dp
-                </dimen>
-                <dimen name="com_facebook_profilepictureview_preset_size_small" >50dp
-                </dimen>
-                <dimen name="com_facebook_loginview_padding_right" >16dp
+                <dimen name="com_facebook_profilepictureview_preset_size_large" >180dp
                 </dimen>
 
                 <color name="com_facebook_usersettingsfragment_not_connected_text_color" >#A6AED7
                 </color>
-                <color name="com_facebook_blue" >#3B5998
-                </color>
 
-                <dimen name="com_facebook_loginview_padding_top" >12dp
+                <dimen name="com_facebook_usersettingsfragment_profile_picture_width" >64dp
                 </dimen>
-                <dimen name="com_facebook_profilepictureview_preset_size_large" >180dp
-                </dimen>
-
-                <style name="tooltip_bubble_text" >
-                    <item name="android:textColor">
-@android:color/white
-                    </item>
-                    <item name="android:gravity">
-left
-                    </item>
-                    <item name="android:textSize">
-12sp
-                    </item>
-                    <item name="android:shadowDy">
--1
-                    </item>
-                    <item name="android:shadowRadius">
-0.25
-                    </item>
-                    <item name="android:shadowColor">
-#40000000
-                    </item>
-                </style>
-
-                <dimen name="com_facebook_loginview_padding_bottom" >12dp
-                </dimen>
-
-                <color name="com_facebook_loginview_text_color" >#FFFFFF
-                </color>
 
                 <style
                     name="com_facebook_loginview_silver_style"
@@ -718,11 +677,6 @@ center
                 <color name="com_facebook_usersettingsfragment_connected_shadow_color" >#000000
                 </color>
 
-                <dimen name="com_facebook_tooltip_horizontal_padding" >10dp
-                </dimen>
-                <dimen name="com_facebook_loginview_text_size" >16.0sp
-                </dimen>
-
                 <style
                     name="com_facebook_loginview_default_style"
                     parent="@android:style/Widget.Button" >
@@ -752,63 +706,110 @@ center
                     </item>
                 </style>
 
-                <dimen name="com_facebook_usersettingsfragment_profile_picture_width" >64dp
+                <dimen name="com_facebook_loginview_padding_top" >12dp
+                </dimen>
+
+                <style name="tooltip_bubble_text" >
+                    <item name="android:textColor">
+@android:color/white
+                    </item>
+                    <item name="android:gravity">
+left
+                    </item>
+                    <item name="android:textSize">
+12sp
+                    </item>
+                    <item name="android:shadowDy">
+-1
+                    </item>
+                    <item name="android:shadowRadius">
+0.25
+                    </item>
+                    <item name="android:shadowColor">
+#40000000
+                    </item>
+                </style>
+
+                <color name="com_facebook_loginview_text_color" >#FFFFFF
+                </color>
+                <color name="com_facebook_blue" >#3B5998
+                </color>
+
+                <dimen name="com_facebook_loginview_padding_right" >16dp
+                </dimen>
+                <dimen name="com_facebook_loginview_text_size" >16.0sp
+                </dimen>
+
+                <color name="com_facebook_usersettingsfragment_connected_text_color" >#FFFFFF
+                </color>
+
+                <dimen name="com_facebook_loginview_padding_bottom" >12dp
+                </dimen>
+                <dimen name="com_facebook_loginview_padding_left" >12dip
                 </dimen>
                 <dimen name="com_facebook_usersettingsfragment_profile_picture_height" >64dp
+                </dimen>
+                <dimen name="com_facebook_tooltip_horizontal_padding" >10dp
+                </dimen>
+                <dimen name="com_facebook_loginview_compound_drawable_padding" >12dp
+                </dimen>
+                <dimen name="com_facebook_profilepictureview_preset_size_small" >50dp
+                </dimen>
+                <dimen name="com_facebook_profilepictureview_preset_size_normal" >100dp
                 </dimen>
             </file>
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-es\strings.xml"
                 qualifiers="es" >
-                <string name="com_facebook_nearby" >Cercano
-                </string>
-                <string name="com_facebook_requesterror_password_changed" >Su contraseña de Facebook ha cambiado, por favor vuelva a conectar la aplicación con Facebook.
-                </string>
-                <string name="com_facebook_requesterror_reconnect" >Se produjo un error al conectar con Facebook, por favor vuelva a conectar la aplicación con Facebook.
-                </string>
-                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d estuvieron aquí
-                </string>
-                <string name="com_facebook_loading" >Cargando
+                <string name="com_facebook_logo_content_description" >Logo de Facebook
                 </string>
                 <string name="com_facebook_requesterror_web_login" >Por favor, iniciar sesión a través https://www.facebook.com o https://m.facebook.com para volver a activar la aplicación para conectar con Facebook.
                 </string>
-                <string name="com_facebook_loginview_cancel_action" >Cancelar
+                <string name="com_facebook_requesterror_password_changed" >Su contraseña de Facebook ha cambiado, por favor vuelva a conectar la aplicación con Facebook.
                 </string>
                 <string name="com_facebook_choose_friends" >Elige Amigos
                 </string>
+                <string name="com_facebook_loginview_log_out_button" >Cerrar sesión
+                </string>
+                <string name="com_facebook_loginview_cancel_action" >Cancelar
+                </string>
+                <string name="com_facebook_internet_permission_error_message" >WebView inicio de sesión requiere permiso INTERNET
+                </string>
+                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d estuvieron aquí
+                </string>
+                <string name="com_facebook_requesterror_permissions" >Una conexión de aplicación con Facebook falló debido a permisos insuficientes, por favor, conceda los permisos de aplicaciones para realizar la operación.
+                </string>
+                <string name="com_facebook_usersettingsfragment_not_logged_in" >No has iniciado sesión
+                </string>
+                <string name="com_facebook_usersettingsfragment_logged_in" >Sesión iniciada
+                </string>
+                <string name="com_facebook_requesterror_reconnect" >Se produjo un error al conectar con Facebook, por favor vuelva a conectar la aplicación con Facebook.
+                </string>
+                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >es:%1$,d estuvieron aquí
+                </string>
+                <string name="com_facebook_loginview_log_out_action" >Cerrar sesión
+                </string>
+                <string name="com_facebook_internet_permission_error_title" >Error de AndroidManifest
+                </string>
+                <string name="com_facebook_picker_done_button_text" >Aceptar
+                </string>
+                <string name="com_facebook_usersettingsfragment_log_in_button" >Iniciar sesión…
+                </string>
+                <string name="com_facebook_nearby" >Cercano
+                </string>
                 <string name="com_facebook_dialogloginactivity_ok_button" >Aceptar
+                </string>
+                <string name="com_facebook_requesterror_relogin" >La aplicación no se conecta con Facebook, inicie sesión y volver a conectar esta aplicación.
+                </string>
+                <string name="com_facebook_loading" >Cargando
+                </string>
+                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
                 </string>
                 <string name="com_facebook_loginview_log_in_button" >Iniciar sesión con Facebook
                 </string>
                 <string name="com_facebook_loginview_logged_in_as" >Sesión iniciada como: %1$s
                 </string>
-                <string name="com_facebook_loginview_log_out_action" >Cerrar sesión
-                </string>
-                <string name="com_facebook_requesterror_permissions" >Una conexión de aplicación con Facebook falló debido a permisos insuficientes, por favor, conceda los permisos de aplicaciones para realizar la operación.
-                </string>
-                <string name="com_facebook_usersettingsfragment_logged_in" >Sesión iniciada
-                </string>
-                <string name="com_facebook_internet_permission_error_title" >Error de AndroidManifest
-                </string>
-                <string name="com_facebook_usersettingsfragment_not_logged_in" >No has iniciado sesión
-                </string>
                 <string name="com_facebook_loginview_logged_in_using_facebook" >Sesión iniciada con Facebook
-                </string>
-                <string name="com_facebook_picker_done_button_text" >Aceptar
-                </string>
-                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
-                </string>
-                <string name="com_facebook_internet_permission_error_message" >WebView inicio de sesión requiere permiso INTERNET
-                </string>
-                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >es:%1$,d estuvieron aquí
-                </string>
-                <string name="com_facebook_requesterror_relogin" >La aplicación no se conecta con Facebook, inicie sesión y volver a conectar esta aplicación.
-                </string>
-                <string name="com_facebook_usersettingsfragment_log_in_button" >Iniciar sesión…
-                </string>
-                <string name="com_facebook_logo_content_description" >Logo de Facebook
-                </string>
-                <string name="com_facebook_loginview_log_out_button" >Cerrar sesión
                 </string>
             </file>
             <file
@@ -820,109 +821,109 @@ center
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-he\strings.xml"
                 qualifiers="he" >
-                <string name="com_facebook_requesterror_password_changed" >.הסיסמה שלך בפייסבוק השתנתה, אנא חבר מחדש את האפליקציה עם פייסבוק
-                </string>
-                <string name="com_facebook_requesterror_web_login" >.כדי לאפשר מחדש לאפליקציה להתחבר עם פייסבוק https://www.facebook.com או https://m.facebook.com אנא היכנס דרך
-                </string>
-                <string name="com_facebook_usersettingsfragment_logged_in" >מחובר
-                </string>
-                <string name="com_facebook_requesterror_reconnect" >.ארעה שגיאה בעת החיבור עם פייסבוק, חבר בבקשה מחדש את האפליקציה עם פייסבוק
+                <string name="com_facebook_picker_done_button_text" >בצע
                 </string>
                 <string name="com_facebook_logo_content_description" >פייסבוק לוגו
                 </string>
-                <string name="com_facebook_picker_done_button_text" >בצע
+                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d היו פה
                 </string>
-                <string name="com_facebook_loginview_log_in_button" >התחבר לפייסבוק
+                <string name="com_facebook_requesterror_web_login" >.כדי לאפשר מחדש לאפליקציה להתחבר עם פייסבוק https://www.facebook.com או https://m.facebook.com אנא היכנס דרך
+                </string>
+                <string name="com_facebook_usersettingsfragment_not_logged_in" >לא מחובר
+                </string>
+                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
                 </string>
                 <string name="com_facebook_loginview_logged_in_as" >מחובר בשם: %1$s
                 </string>
-                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d היו פה
+                <string name="com_facebook_loading" >..מעלה
                 </string>
-                <string name="com_facebook_requesterror_relogin" >.האפליקציה אינה מחוברת לפייסבוק, אנא היכנס וחבר מחדש את האפליקציה
+                <string name="com_facebook_choose_friends" >בחר חברים
+                </string>
+                <string name="com_facebook_loginview_logged_in_using_facebook" >מחובר באמצעות פייסבוק
+                </string>
+                <string name="com_facebook_loginview_cancel_action" >בטל
+                </string>
+                <string name="com_facebook_loginview_log_in_button" >התחבר לפייסבוק
+                </string>
+                <string name="com_facebook_requesterror_password_changed" >.הסיסמה שלך בפייסבוק השתנתה, אנא חבר מחדש את האפליקציה עם פייסבוק
+                </string>
+                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d היו פה
+                </string>
+                <string name="com_facebook_nearby" >קרוב אליי
                 </string>
                 <string name="com_facebook_usersettingsfragment_log_in_button" >התחבר…
                 </string>
                 <string name="com_facebook_internet_permission_error_title" >AndroidManifest שגיאת
                 </string>
-                <string name="com_facebook_internet_permission_error_message" >ההתחברות לתצוגת אתר דורשת אישור אינטרנט
-                </string>
-                <string name="com_facebook_loginview_cancel_action" >בטל
-                </string>
-                <string name="com_facebook_choose_friends" >בחר חברים
-                </string>
                 <string name="com_facebook_loginview_log_out_button" >התנתק
                 </string>
-                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
+                <string name="com_facebook_usersettingsfragment_logged_in" >מחובר
                 </string>
-                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d היו פה
-                </string>
-                <string name="com_facebook_usersettingsfragment_not_logged_in" >לא מחובר
-                </string>
-                <string name="com_facebook_loading" >..מעלה
-                </string>
-                <string name="com_facebook_nearby" >קרוב אליי
-                </string>
-                <string name="com_facebook_loginview_logged_in_using_facebook" >מחובר באמצעות פייסבוק
-                </string>
-                <string name="com_facebook_dialogloginactivity_ok_button" >אישור
+                <string name="com_facebook_loginview_log_out_action" >התנתק
                 </string>
                 <string name="com_facebook_requesterror_permissions" >.חיבור האפליקציה עם פייסבוק נכשל בשל הרשאות לא מספקות, אנא הענק הרשאות לאפליקציה בכדי שהפעולה תוכל להתבצע
                 </string>
-                <string name="com_facebook_loginview_log_out_action" >התנתק
+                <string name="com_facebook_requesterror_relogin" >.האפליקציה אינה מחוברת לפייסבוק, אנא היכנס וחבר מחדש את האפליקציה
+                </string>
+                <string name="com_facebook_requesterror_reconnect" >.ארעה שגיאה בעת החיבור עם פייסבוק, חבר בבקשה מחדש את האפליקציה עם פייסבוק
+                </string>
+                <string name="com_facebook_dialogloginactivity_ok_button" >אישור
+                </string>
+                <string name="com_facebook_internet_permission_error_message" >ההתחברות לתצוגת אתר דורשת אישור אינטרנט
                 </string>
             </file>
             <file
                 path="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook\res\values-iw\strings.xml"
                 qualifiers="iw" >
-                <string name="com_facebook_usersettingsfragment_log_in_button" >התחבר…
-                </string>
-                <string name="com_facebook_loginview_log_out_button" >התנתק
+                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d היו פה
                 </string>
                 <string name="com_facebook_loginview_logged_in_using_facebook" >מחובר באמצעות פייסבוק
                 </string>
-                <string name="com_facebook_internet_permission_error_message" >ההתחברות לתצוגת אתר דורשת אישור אינטרנט
-                </string>
-                <string name="com_facebook_loginview_log_out_action" >התנתק
-                </string>
-                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
-                </string>
-                <string name="com_facebook_choose_friends" >בחר חברים
-                </string>
-                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d היו פה
-                </string>
-                <string name="com_facebook_usersettingsfragment_not_logged_in" >לא מחובר
-                </string>
-                <string name="com_facebook_placepicker_subtitle_format" >%1$s • %2$,d היו פה
-                </string>
-                <string name="com_facebook_requesterror_permissions" >.חיבור האפליקציה עם פייסבוק נכשל בשל הרשאות לא מספקות, אנא הענק הרשאות לאפליקציה בכדי שהפעולה תוכל להתבצע
-                </string>
-                <string name="com_facebook_requesterror_web_login" >.כדי לאפשר מחדש לאפליקציה להתחבר עם פייסבוק https://www.facebook.com או https://m.facebook.com אנא היכנס דרך
-                </string>
-                <string name="com_facebook_requesterror_relogin" >.האפליקציה אינה מחוברת לפייסבוק, אנא היכנס וחבר מחדש את האפליקציה
-                </string>
-                <string name="com_facebook_requesterror_password_changed" >.הסיסמה שלך בפייסבוק השתנתה, אנא חבר מחדש את האפליקציה עם פייסבוק
-                </string>
-                <string name="com_facebook_picker_done_button_text" >בצע
-                </string>
-                <string name="com_facebook_internet_permission_error_title" >AndroidManifest שגיאת
+                <string name="com_facebook_loginview_cancel_action" >בטל
                 </string>
                 <string name="com_facebook_loginview_logged_in_as" >מחובר בשם: %1$s
-                </string>
-                <string name="com_facebook_requesterror_reconnect" >.ארעה שגיאה בעת החיבור עם פייסבוק, חבר בבקשה מחדש את האפליקציה עם פייסבוק
-                </string>
-                <string name="com_facebook_usersettingsfragment_logged_in" >מחובר
-                </string>
-                <string name="com_facebook_logo_content_description" >פייסבוק לוגו
-                </string>
-                <string name="com_facebook_dialogloginactivity_ok_button" >אישור
-                </string>
-                <string name="com_facebook_loading" >..מעלה
                 </string>
                 <string name="com_facebook_loginview_log_in_button" >התחבר לפייסבוק
                 </string>
                 <string name="com_facebook_nearby" >קרוב אליי
                 </string>
-                <string name="com_facebook_loginview_cancel_action" >בטל
+                <string name="com_facebook_logo_content_description" >פייסבוק לוגו
+                </string>
+                <string name="com_facebook_requesterror_reconnect" >.ארעה שגיאה בעת החיבור עם פייסבוק, חבר בבקשה מחדש את האפליקציה עם פייסבוק
+                </string>
+                <string name="com_facebook_dialogloginactivity_ok_button" >אישור
+                </string>
+                <string name="com_facebook_usersettingsfragment_logged_in" >מחובר
+                </string>
+                <string name="com_facebook_requesterror_permissions" >.חיבור האפליקציה עם פייסבוק נכשל בשל הרשאות לא מספקות, אנא הענק הרשאות לאפליקציה בכדי שהפעולה תוכל להתבצע
+                </string>
+                <string name="com_facebook_loginview_log_out_button" >התנתק
+                </string>
+                <string name="com_facebook_loginview_log_out_action" >התנתק
+                </string>
+                <string name="com_facebook_requesterror_relogin" >.האפליקציה אינה מחוברת לפייסבוק, אנא היכנס וחבר מחדש את האפליקציה
+                </string>
+                <string name="com_facebook_loading" >..מעלה
+                </string>
+                <string name="com_facebook_picker_done_button_text" >בצע
+                </string>
+                <string name="com_facebook_internet_permission_error_title" >AndroidManifest שגיאת
+                </string>
+                <string name="com_facebook_placepicker_subtitle_catetory_only_format" >%1$s
+                </string>
+                <string name="com_facebook_usersettingsfragment_not_logged_in" >לא מחובר
+                </string>
+                <string name="com_facebook_placepicker_subtitle_were_here_only_format" >%1$,d היו פה
+                </string>
+                <string name="com_facebook_usersettingsfragment_log_in_button" >התחבר…
+                </string>
+                <string name="com_facebook_internet_permission_error_message" >ההתחברות לתצוגת אתר דורשת אישור אינטרנט
+                </string>
+                <string name="com_facebook_choose_friends" >בחר חברים
+                </string>
+                <string name="com_facebook_requesterror_password_changed" >.הסיסמה שלך בפייסבוק השתנתה, אנא חבר מחדש את האפליקציה עם פייסבוק
+                </string>
+                <string name="com_facebook_requesterror_web_login" >.כדי לאפשר מחדש לאפליקציה להתחבר עם פייסבוק https://www.facebook.com או https://m.facebook.com אנא היכנס דרך
                 </string>
             </file>
             <file

@@ -22,4 +22,5 @@
     <string name="APP_ID"> 566601083457511 </string>
     <string name="go_menu">Draw now</string>
     <string name="connection">connection</string>
+    <string name="get_started">To get started, log in using Facebook</string>
 </resources>

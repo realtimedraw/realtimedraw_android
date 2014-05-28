@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\Alex\Documents\GitHub\realtimedraw_android" />
-            <option value="C:\Users\Alex\Documents\GitHub\realtimedraw_android\app" />
-            <option value="C:\Users\Alex\Documents\GitHub\realtimedraw_android\facebook" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/facebook" />
           </set>
         </option>
       </GradleProjectSettings>

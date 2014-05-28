@@ -7,9 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.facebook.android.Facebook;
+import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
+import com.facebook.widget.ProfilePictureView;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingEncoder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingToolBrush;
 
@@ -28,6 +32,9 @@ public class MainFragment extends Fragment{
     private static final String TAG = "MainFragment";
     private UiLifecycleHelper uiHelper;
     private FullscreenActivity activity;
+    private ProfilePictureView profilePictureView;
+    private TextView userNameView;
+    private static final int REAUTH_ACTIVITY_CODE = 100;
 
     public MainFragment(FullscreenActivity activity){
         super();
@@ -39,20 +46,74 @@ public class MainFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
 
+        assert view != null;
+// Find the user's profile picture custom view
+
+        profilePictureView = (ProfilePictureView) view.findViewById(R.id.selection_profile_pic);
+        profilePictureView.setCropped(true);
+
+// Find the user's name view
+        userNameView = (TextView) view.findViewById(R.id.selection_user_name);
+
+        uiHelper = new UiLifecycleHelper(getActivity(), callback);
+        uiHelper.onCreate(savedInstanceState);
+
+        // Check for an open session
+        Session session = Session.getActiveSession();
+        if (session != null && session.isOpened()) {
+            // Get the user's data
+            makeMeRequest(session);
+            profilePictureView.setVisibility(View.VISIBLE);
+
+        }
+
         LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("user_likes", "user_status"));
         return view;
+
+    }
+
+
+    private void makeMeRequest(final Session session) {
+        // Make an API call to get user data and define a
+        // new callback to handle the response.
+        Request request = Request.newMeRequest(session,
+                new Request.GraphUserCallback() {
+                    @Override
+                    public void onCompleted(GraphUser user, Response response) {
+                        // If the response is successful
+                        if (session == Session.getActiveSession()) {
+                            if (user != null) {
+                                // Set the id for the ProfilePictureView
+                                // view that in turn displays the profile picture.
+                                profilePictureView.setProfileId(user.getId());
+                                // Set the Textview's text to the user's name.
+                                userNameView.setText(user.getName());
+                            }
+                        }
+                        if (response.getError() != null) {
+                            // Handle errors, will do so later.
+                        }
+                    }
+                });
+        request.executeAsync();
     }
 
 
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+        if (session != null && session.isOpened()) {
+            // Get the user's data.
+            makeMeRequest(session);
+        }
+
         if (state.isOpened()) {
             Log.i(TAG, "Logged in...");
             activity.WAMP_auth(session.getAccessToken());
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
         }
+
     }
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -92,6 +153,10 @@ public class MainFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         uiHelper.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REAUTH_ACTIVITY_CODE) {
+            uiHelper.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

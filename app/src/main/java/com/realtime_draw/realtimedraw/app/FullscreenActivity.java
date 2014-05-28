@@ -24,7 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.pm.Signature;
 
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
+import com.facebook.model.GraphUser;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingAction;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingRecorder;
 import com.realtime_draw.realtimedraw.app.filesys.DrawingToolBrush;
@@ -53,6 +56,7 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         state = 0;
+
         setupWAMP();
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
@@ -86,6 +90,26 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+
+        //get token ID!!!!
+        if (Session.getActiveSession().isOpened()) {
+            // Request user data and show the results
+            Request.newMeRequest(Session.getActiveSession(), new Request.GraphUserCallback() {
+
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    // TODO Auto-generated method stub
+                    if (user != null) {
+                        // Display the parsed user info
+                        Log.v(TAG, "Response : " + response);
+                        Log.v(TAG, "UserID : " + user.getId());
+                        Log.v(TAG, "User FirstName : " + user.getFirstName());
+
+                    }
+                }
+
+            });
+        }
 
 
     }
@@ -386,6 +410,7 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
         }, facebookAccessToken);
         */
     }
+
 
     protected void updateConnectionStatus(){
         ImageView iv = (ImageView)findViewById(R.id.connectionStatus);
