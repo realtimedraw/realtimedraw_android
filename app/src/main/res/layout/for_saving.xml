@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name It"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtname"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Just Save It To My Gallery"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:background="#ffffff"
+        android:textColor="#00479d"
+        android:layout_marginTop="70dp"
+        android:enabled="true"
+        android:clickable="true"
+        android:onClick="save1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Also Make It Public"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:textSize="30dp"
+        android:textColor="#c95338"
+        android:layout_marginTop="30dp"
+        android:enabled="true"
+        android:clickable="true"
+        android:onClick="save2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do Not Save It"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:textSize="30dp"
+        android:textColor="#22ac38"
+        android:layout_marginTop="30dp"
+        android:enabled="true"
+        android:clickable="true"
+        android:onClick="save3"/>
+</LinearLayout>
