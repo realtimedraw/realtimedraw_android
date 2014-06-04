@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue One"
+        android:id="@+id/continue_one"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:textSize="30dp"
+        android:enabled="true"
+        android:layout_marginTop="130dp"
+        android:textColor="#00479d" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On Your Own New One "
+        android:id="@+id/nou"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:textSize="30dp"
+        android:enabled="true"
+        android:layout_marginTop="50dp"
+        android:textColor="#c95338"
+        android:onClick="draw_now" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Group"
+        android:id="@+id/new_group"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:textSize="30dp"
+        android:enabled="true"
+        android:layout_marginTop="50dp"
+        android:textColor="#22ac38" />
+
+</LinearLayout>

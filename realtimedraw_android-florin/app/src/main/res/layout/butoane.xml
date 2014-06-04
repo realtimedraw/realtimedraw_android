@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:src="@drawable/patru"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw Now"
+        android:id="@+id/draw_now"
+        android:background="#ff2627"
+        android:singleLine="false"
+        android:textSize="20dp"
+        android:enabled="true"
+        android:textColor="#5e4bff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="195dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch"
+        android:id="@+id/watch"
+        android:textSize="20dp"
+        android:textColor="#5749fd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        android:background="#ff3251" />
+
+
+</RelativeLayout>
