@@ -10,12 +10,18 @@ public class DrawingRecorder {
     private DrawingEncoder encoder;
     private long startTime;
     private onAddListener listener_ = null;
+    private long pausedTime = 0;
+    private long lastPause = 0;
 
     public void start(Bitmap canvasBitmap){
         enc_out = new ByteArrayOutputStream();
         encoder = new DrawingEncoder(enc_out, canvasBitmap);
         //encoder.start();
         startTime = System.currentTimeMillis();
+    }
+
+    public void start(){
+        start(null);
     }
 
     public byte[] stop() throws Throwable {
@@ -26,7 +32,7 @@ public class DrawingRecorder {
     }
 
     public void addNowAction(DrawingAction action){
-        int timeIndex = (int) (System.currentTimeMillis() - startTime);
+        int timeIndex = (int) (System.currentTimeMillis() - startTime - pausedTime);
         encoder.queueAction(timeIndex, action);
         if(listener_ != null)
             listener_.onAdd(timeIndex, action);
@@ -34,6 +40,15 @@ public class DrawingRecorder {
 
     public void setOnAddListener(onAddListener listener){
         listener_ = listener;
+    }
+
+    public void pause() {
+        lastPause = System.currentTimeMillis();
+    }
+
+    public void resume() {
+        pausedTime += (System.currentTimeMillis()-lastPause);
+        lastPause = 0;
     }
 
     public static interface onAddListener{

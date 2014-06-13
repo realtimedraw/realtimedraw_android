@@ -36,11 +36,6 @@ public class MainFragment extends Fragment{
     private TextView userNameView;
     private static final int REAUTH_ACTIVITY_CODE = 100;
 
-    public MainFragment(FullscreenActivity activity){
-        super();
-        this.activity = activity;
-    }
-
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,11 +44,11 @@ public class MainFragment extends Fragment{
         assert view != null;
 // Find the user's profile picture custom view
 
-        profilePictureView = (ProfilePictureView) view.findViewById(R.id.selection_profile_pic);
-        profilePictureView.setCropped(true);
+//        profilePictureView = (ProfilePictureView) view.findViewById(R.id.selection_profile_pic);
+//        profilePictureView.setCropped(true);
 
 // Find the user's name view
-        userNameView = (TextView) view.findViewById(R.id.selection_user_name);
+//        userNameView = (TextView) view.findViewById(R.id.selection_user_name);
 
         uiHelper = new UiLifecycleHelper(getActivity(), callback);
         uiHelper.onCreate(savedInstanceState);
@@ -63,7 +58,7 @@ public class MainFragment extends Fragment{
         if (session != null && session.isOpened()) {
             // Get the user's data
             makeMeRequest(session);
-            profilePictureView.setVisibility(View.VISIBLE);
+//            profilePictureView.setVisibility(View.VISIBLE);
 
         }
 
@@ -87,9 +82,9 @@ public class MainFragment extends Fragment{
                             if (user != null) {
                                 // Set the id for the ProfilePictureView
                                 // view that in turn displays the profile picture.
-                                profilePictureView.setProfileId(user.getId());
+//                                profilePictureView.setProfileId(user.getId());
                                 // Set the Textview's text to the user's name.
-                                userNameView.setText(user.getName());
+//                                userNameView.setText(user.getName());
                             }
                         }
                         if (response.getError() != null) {
@@ -109,7 +104,7 @@ public class MainFragment extends Fragment{
 
         if (state.isOpened()) {
             Log.i(TAG, "Logged in...");
-            activity.WAMP_auth(session.getAccessToken());
+            ((FullscreenActivity)getActivity()).setFBAccessToken(session.getAccessToken());
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
         }

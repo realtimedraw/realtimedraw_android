@@ -22,6 +22,7 @@ public class DrawingView extends View {
     private FullscreenActivity activity = null;
     public boolean isRecording = false;
     private DrawingRecorder recorder = new DrawingRecorder();
+    private boolean paused = false;
 
 
     public DrawingView(Context context, AttributeSet attrs) {
@@ -38,7 +39,7 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         if(isRecording)
-            recorder.start(bitmap);
+            recorder.start();
         clearScreen();
         setColor("black");
     }
@@ -57,6 +58,8 @@ public class DrawingView extends View {
     //register user as drawing action
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(paused)
+            return false;
         float touchX = event.getX();
         float touchY = event.getY();
         switch (event.getAction()) {
@@ -134,6 +137,16 @@ public class DrawingView extends View {
 
     public void setOnDraw(DrawingRecorder.onAddListener listener){
         recorder.setOnAddListener(listener);
+    }
+
+    public void pauseRecording() {
+        recorder.pause();
+        paused = true;
+    }
+
+    public void resumeRecording() {
+        recorder.resume();
+        paused = false;
     }
 }
 

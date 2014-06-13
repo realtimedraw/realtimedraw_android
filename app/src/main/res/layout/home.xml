@@ -21,25 +21,20 @@
         android:paddingTop="100dp"
         android:paddingBottom="200dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="salut ce faci aici baaa!?"
-            android:textColor="#FF5E4BFF"/>
-
-        <TextView
-            android:id="@+id/selection_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:textColor="#333"
-            android:textSize="18sp" />
-
         <Button
             android:text="@string/go_menu"
-            android:id="@+id/button"
-            android:onClick="gomenu"
+            android:id="@+id/draw_now_btn"
+            android:onClick="menu_draw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            />
+
+        <Button
+            android:text="@string/gallery"
+            android:id="@+id/gallery_btn"
+            android:onClick="menu_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -53,7 +48,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             />
-
+<!--
         <com.facebook.widget.ProfilePictureView
             android:id="@+id/selection_profile_pic"
             android:layout_height="wrap_content"
@@ -63,16 +58,19 @@
             android:gravity="center_horizontal"
             android:visibility="invisible"
             facebook:preset_size="large" />
-
+-->
 
     </LinearLayout>
 
-   <ImageView
-        android:layout_width="5dp"
-        android:layout_height="5dp"
-        android:id="@+id/connectionStatus"
-        android:contentDescription="@string/connection"
-        android:background="#ff1c3280"
-        android:layout_gravity="right"/>
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/connStat"
+        android:singleLine="false"
+        android:onClick="menu_refresh"
+        android:enabled="true"
+        android:background="#ff0000ff"
+        android:layout_gravity="right"
+        android:clickable="true" />
 
 </LinearLayout>

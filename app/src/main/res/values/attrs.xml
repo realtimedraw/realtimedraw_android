@@ -9,4 +9,11 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="GalleryLinearLayout">
+        <attr name="GalleryLinearLayout_displayOnly" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="GalleryListView">
+        <attr name="GalleryListView_displayOnly" format="boolean"/>
+    </declare-styleable>
 </resources>

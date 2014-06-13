@@ -37,7 +37,9 @@ public class DrawingPlayer {
         while (System.currentTimeMillis() - startTime < group.getTimeIndex()) {
             Thread.sleep(5);
         }
-        setCurrentFrame(group.getKeyFrameBitmap());
+        if(group.getKeyFrameBitmap()!=null){
+            setCurrentFrame(group.getKeyFrameBitmap());
+        }
         for (DrawingFrame frame : group.getFrames()) {
             while (System.currentTimeMillis() - startTime < frame.getTimeIndex() + group.getTimeIndex()) {
                 Thread.sleep(5);

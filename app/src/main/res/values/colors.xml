@@ -1,5 +1,7 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
-
+    <color name="conn0">#ffff0000</color>
+    <color name="conn1">#ff00ff00</color>
+    <color name="light_grey">#cccccc</color>
 </resources>

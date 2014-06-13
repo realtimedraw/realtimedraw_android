@@ -23,4 +23,7 @@
     <string name="go_menu">Draw now</string>
     <string name="connection">connection</string>
     <string name="get_started">To get started, log in using Facebook</string>
+    <string name="gallery">Gallery</string>
+    <string name="loading">Loading...</string>
+    <string name="save_insert_name">Name your drawing...</string>
 </resources>

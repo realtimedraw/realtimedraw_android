@@ -94,11 +94,14 @@ public class deseneDataSourceClass{
     }
 
 
-
-
-
-
-
+    public boolean existaDesen(String nume) {
+        List<Desen> desene = getAllDesene();
+        for(Desen desen:desene){
+            if(desen.getName().equals(nume))
+                return true;
+        }
+        return false;
+    }
 }
 
 

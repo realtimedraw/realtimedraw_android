@@ -9,18 +9,17 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class DrawingEncoder extends Thread {
     public static final short keyFrameInterval = 10000;//10s
     private DataOutputStream out;
-    private DrawingFrameGroup frameGroup;
-    private DrawingPlayer player;
+    private DrawingFrameGroup frameGroup = new DrawingFrameGroup();
+    private DrawingPlayer player = new DrawingPlayer();
     private LinkedBlockingDeque<QueueItem> queue = new LinkedBlockingDeque<>();
 
     public DrawingEncoder(OutputStream outputStream, Bitmap initialFrame){
         super("DrawingEncoder");
         out = new DataOutputStream(outputStream);
-        frameGroup = new DrawingFrameGroup(initialFrame);
-        player = new DrawingPlayer();
-        player.setCurrentFrame(initialFrame);
+    }
 
-        frameGroup.setTimeIndex(0);
+    public DrawingEncoder(OutputStream outputStream){
+        this(outputStream, null);
     }
 
     public void queueAction(int timeIndex, DrawingAction action){
@@ -33,6 +32,8 @@ public class DrawingEncoder extends Thread {
 
     public synchronized void run() {
         try {
+//            player.setCurrentFrame(initialFrame);
+            frameGroup.setTimeIndex(0);
             while (true){
                 QueueItem item;
                 item = queue.takeFirst();

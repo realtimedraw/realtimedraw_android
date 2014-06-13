@@ -20,19 +20,24 @@ public class DrawingFrameGroup {
     private Bitmap keyFrame_bitmap;
     private int timeIndex = -1;
 
-    private DrawingFrameGroup() {
+    public DrawingFrameGroup(Bitmap start) {
         encodedSize = 14;
+        keyFrame_bitmap = start;
+        byte[] a = null;
+        if(start != null) {
+            long g = System.nanoTime();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            start.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            long end = System.nanoTime();
+            a=baos.toByteArray();
+            System.out.println("Compressed to png: " + ((end - g) / 1000000) + " milliseconds");
+            encodedSize += a.length;
+        }
+        keyFrame_byte = a;
     }
 
-    public DrawingFrameGroup(Bitmap start) {
-        keyFrame_bitmap = start;
-        long g = System.nanoTime();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        start.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        keyFrame_byte = baos.toByteArray();
-        encodedSize = keyFrame_byte.length + 14;
-        long end = System.nanoTime();
-        System.out.println("Compressed to png: " + ((end - g) / 1000000) + " milliseconds");
+    public DrawingFrameGroup() {
+        this(null);
     }
 
     public static DrawingFrameGroup emptyGroup() {
