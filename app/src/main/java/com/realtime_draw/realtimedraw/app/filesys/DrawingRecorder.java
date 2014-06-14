@@ -1,6 +1,7 @@
 package com.realtime_draw.realtimedraw.app.filesys;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class DrawingRecorder {
     private long lastPause = 0;
 
     public void start(Bitmap canvasBitmap){
+        Log.d("xefa", "aed");
         enc_out = new ByteArrayOutputStream();
         encoder = new DrawingEncoder(enc_out, canvasBitmap);
         //encoder.start();

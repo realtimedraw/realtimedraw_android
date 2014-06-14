@@ -20,7 +20,7 @@ public class DrawingView extends View {
     private Canvas canvas;
     private Bitmap bitmap = null;
     private FullscreenActivity activity = null;
-    public boolean isRecording = false;
+    public boolean isRecording = true;
     private DrawingRecorder recorder = new DrawingRecorder();
     private boolean paused = false;
 
@@ -28,6 +28,7 @@ public class DrawingView extends View {
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         state = new DrawingPlayerState();
+
     }
 
     @Override
@@ -38,8 +39,9 @@ public class DrawingView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-        if(isRecording)
-            recorder.start();
+        if(isRecording) {
+            recorder.start(bitmap);
+        }
         clearScreen();
         setColor("black");
     }

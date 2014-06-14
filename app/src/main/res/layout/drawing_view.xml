@@ -161,7 +161,9 @@
                 android:contentDescription="@string/paint"
                 android:onClick="paintClicked"
                 android:src="@drawable/paint"
-                android:tag="#FF000000" />
+                android:tag="#FF000000"
+                android:focusableInTouchMode="false"
+                android:id="@+id/negru"/>
 
 
 

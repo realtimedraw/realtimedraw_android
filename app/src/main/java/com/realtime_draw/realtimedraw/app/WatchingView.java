@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.realtime_draw.realtimedraw.app.filesys.DrawingAction;
@@ -99,6 +100,7 @@ public class WatchingView extends View {
     }
 
     public void play(InputStream in) {
+        Log.d("WatchingView", "play(InputStream)");
         this.in = in;
         activity.togglePlayButton(getResources().getDrawable(android.R.drawable.ic_media_pause));
         playing = true;
@@ -132,10 +134,6 @@ public class WatchingView extends View {
         reader.interrupt();
         finished = true;
     }
-
-//    public void setActivity(FullscreenActivity activity) {
-//        this.activity = activity;
-//    }
 
     public boolean isFinished(){
         return finished;

@@ -26,4 +26,5 @@
     <string name="gallery">Gallery</string>
     <string name="loading">Loading...</string>
     <string name="save_insert_name">Name your drawing...</string>
+    <string name="browse_online">browse online</string>
 </resources>

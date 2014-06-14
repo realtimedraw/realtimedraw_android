@@ -22,13 +22,19 @@
         android:paddingBottom="200dp">
 
         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="browse online"
+            android:onClick="menu_browse"/>
+
+        <Button
             android:text="@string/go_menu"
             android:id="@+id/draw_now_btn"
             android:onClick="menu_draw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             />
 
         <Button
@@ -38,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             />
 
         <com.facebook.widget.LoginButton
@@ -48,29 +54,23 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             />
-<!--
-        <com.facebook.widget.ProfilePictureView
-            android:id="@+id/selection_profile_pic"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/connStat"
+            android:singleLine="false"
+            android:onClick="menu_refresh"
+            android:enabled="true"
+            android:background="#ff0000ff"
+            android:layout_gravity="bottom|right"
+            android:clickable="true"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:visibility="invisible"
-            facebook:preset_size="large" />
--->
+            />
+
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/connStat"
-        android:singleLine="false"
-        android:onClick="menu_refresh"
-        android:enabled="true"
-        android:background="#ff0000ff"
-        android:layout_gravity="right"
-        android:clickable="true" />
+
 
 </LinearLayout>

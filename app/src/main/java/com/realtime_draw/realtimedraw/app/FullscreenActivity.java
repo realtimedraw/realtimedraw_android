@@ -41,6 +41,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 import de.tavendo.autobahn.Autobahn;
 import de.tavendo.autobahn.AutobahnConnection;
@@ -54,7 +57,7 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
     private MainFragment mainFragment;
     private deseneDataSourceClass datasource;
     private EditText txtNume;
-    private final String wsuri = "ws://86.127.137.166:2014/pubsub";
+    private final String wsuri = "ws://10.11.191.13:2014/pubsub";
     private int userid = 0;
     private String fbAccessToken = null;
 
@@ -347,24 +350,9 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
                         //prepare stream
                         break;
                     case DialogInterface.BUTTON_NEUTRAL://No
-                        /*
-                        setContentView(R.layout.loading);
-                        (new AsyncTask<Void, Void, Void>() {
-                            @Override
-                            protected Void doInBackground(Void... voids) {
-                                DrawingView drawingView = (DrawingView) findViewById(R.id.drawing_view);
-
-                                return null;
-                            }
-
-                            @Override
-                            protected void onPostExecute(Void aVoid) {
-                                setContentView(R.layout.drawing_view);
-                            }
-                        }).execute();
-                        */
                         state = 5;
                         setContentView(R.layout.drawing_view);
+                        currPaint = (ImageButton) findViewById(R.id.negru);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE://Cancel
@@ -407,6 +395,57 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
         */
     }
 
+    public void menu_browse(View view){
+        setContentView(R.layout.browse);
+    }
+
+    public void onlinePlayDesen(long id) {
+//
+    }
+
+    private abc[] ceva = null;
+    public List<abc> desenePeServer() {
+        final Object lock = new Object();
+        synchronized (mConnection){
+            if (!mConnection.isConnected()) {
+                showToast("not connected");
+                return null;
+            }
+            synchronized (lock) {
+                mConnection.call("browse", abc[].class, new Autobahn.CallHandler() {
+                    @Override
+                    public void onResult(Object o) {
+                        Log.d("abc", o.toString());
+                        synchronized (lock) {
+                            ceva = (abc[]) o;
+                            lock.notify();
+                        }
+                    }
+
+                    @Override
+                    public void onError(String s, String s2) {
+                        Log.d("wamp", "error:" + s + ":" + s2);
+                        synchronized (lock) {
+                            lock.notify();
+                        }
+                    }
+                });
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        Log.d("ceva", ceva.toString());
+        return Arrays.asList(ceva);
+    }
+
+    public static class abc{
+        public int id;
+        public String nume;
+    }
+
     public deseneDataSourceClass getDatasource() {
         return datasource;
     }
@@ -415,9 +454,9 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
         Desen desen = datasource.createDesen(nume, "0", "0");
         try {
             File file = new File("abc.rec");
-            file.renameTo(new File(String.valueOf(desen.getId())));
-            /*
-            FileOutputStream fileOutputStream = openFileOutput(String.valueOf(desen.getId()), Context.MODE_PRIVATE);
+            String newpath = ""+desen.getId();
+
+            FileOutputStream fileOutputStream = openFileOutput(newpath, Context.MODE_PRIVATE);
             FileInputStream fileInputStream = openFileInput("abc.rec");
 
             byte[] buffer = new byte[1024];
@@ -432,7 +471,7 @@ public class FullscreenActivity extends FragmentActivity implements View.OnClick
 
             fileInputStream.close();
             fileOutputStream.close();
-            */
+
         } catch (Exception e) {
             e.printStackTrace();
         }
