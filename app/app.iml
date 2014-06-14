@@ -81,6 +81,7 @@
     <orderEntry type="library" exported="" name="jackson-mapper-asl-1.9.7" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-asl-1.9.7" level="project" />
+    <orderEntry type="library" exported="" name="bolts" level="project" />
     <orderEntry type="module" module-name="facebook" exported="" />
   </component>
 </module>
